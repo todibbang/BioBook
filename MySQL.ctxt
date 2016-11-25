@@ -2,9 +2,9 @@
 comment0.params=
 comment0.target=MySQL()
 comment1.params=statement
-comment1.target=java.sql.ResultSet\ executeQuery(java.lang.String)
+comment1.target=java.util.ArrayList\ executeQuery(java.lang.String)
 comment2.params=rs
-comment2.target=void\ PrintResultSet(java.sql.ResultSet)
+comment2.target=java.util.ArrayList\ PrintResultSet(java.sql.ResultSet)
 comment3.params=statement
 comment3.target=int\ executeCommand(java.lang.String)
 comment4.params=

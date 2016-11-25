@@ -1,23 +1,45 @@
+import java.util.ArrayList;
 
-/**
- * Write a description of class Film here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Film
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Film
-     */
-    public Film()
+    private String title;
+    private String duration;
+    private String imageSource;
+    
+    public Film(String t, String d, String i)
     {
-        // initialise instance variables
-        x = 0;
+        title = t;
+        duration = d;
+        imageSource = i;
     }
-
-    static void getAllMovies() { }
+    
+    public String getTitle() {
+        return title;
+    }
+    
+    public String getDuration() {
+        return duration;
+    }
+    
+    public String getImageSource() {
+        return imageSource;
+    }
+    
+    //lav get methods til fields
+    
+    public static ArrayList<Film> getAllMovies() 
+    { 
+        ArrayList<ArrayList<String>> filmString = MySQL.getInstance().executeQuery("SELECT * FROM film");
+        ArrayList<Film> film = new ArrayList<Film>();
+        for(ArrayList<String> f : filmString) {
+            film.add(new Film(f.get(0), f.get(1), f.get(2)));
+        }
+        
+        for(Film f : film) {
+            System.out.println(f.getTitle() + ", " + f.getDuration() + ", " + f.getImageSource());
+        }
+        return film;
+    }
+    
+    
 }
