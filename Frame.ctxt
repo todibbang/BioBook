@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Frame()
+comment1.params=
+comment1.target=void\ makeFrame()
+comment2.params=p
+comment2.target=void\ setLogInScreen(java.awt.Container)
+comment3.params=q
+comment3.target=void\ HandleQuery(java.lang.String)
+comment3.text=\n\ \ \ \ private\ void\ processLogin(String\ un,\ String\ pw)\ {\n\ \ \ \ \ \ \ \ System.out.println(un\ +"\ "+\ pw);\n\ \ \ \ \ \ \ \ boolean\ success\ \=\ dbh.CheckLoginExists(un,\ pw);\n\ \ \ \ \ \ \ \ System.out.print(success);\n\ \ \ \ \ \ \ \ System.out.println("");\n}
+comment4.params=q
+comment4.target=void\ HandleCommand(java.lang.String)
+numComments=5
