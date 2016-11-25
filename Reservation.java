@@ -2,6 +2,7 @@ public class Reservation
 {
     public Reservation()
     {
+        String name;
         
     }
 
