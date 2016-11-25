@@ -9,6 +9,7 @@ public class FindReservationController extends FindReservationGUI
 {
     // instance variables - replace the example below with your own
     private int x;
+    private String inshallah;
 
     /**
      * Constructor for objects of class FindReservationController
