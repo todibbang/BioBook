@@ -36,4 +36,23 @@ public class Demo
         System.out.println(s);
         dbh.executeCommand(s);
     }
+    
+    
+    
+    public static void createReservation() {
+        
+        
+        Reservation.addReservation("31362328", "Tobias Bjerge Bang");
+        
+        Reservation r = Reservation.getReservation("31362328", "Tobias Bjerge Bang");
+        
+        Reservation.addShowingReservation(3, r.getReservationId(), new int [] {67,68,69});
+        
+        
+        
+        
+        
+        
+        
+    }
 }

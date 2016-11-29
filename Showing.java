@@ -37,7 +37,22 @@ public class Showing{
     //lav get methods til fields
     public static ArrayList<Showing> getAllShowings() 
     { 
-        ArrayList<ArrayList<String>> showingString = MySQL.getInstance().executeQuery("SELECT * FROM showing");
+        return getShowings("SELECT * FROM showing");
+    }
+    
+    public static ArrayList<Showing> getShowingFromMovieTitle(Movie m) 
+    { 
+        return getShowings("SELECT * FROM showing WHERE movieId = " + m.getMovieId());
+    }
+    
+    public static ArrayList<Showing> getShowingFromDate(String d) 
+    { 
+        return getShowings("SELECT * FROM showing WHERE date = " + d);
+    }
+    
+    private static ArrayList<Showing> getShowings(String statement) 
+    { 
+        ArrayList<ArrayList<String>> showingString = MySQL.getInstance().executeQuery(statement);
         ArrayList<Showing> showings = new ArrayList<Showing>();
         for(ArrayList<String> s : showingString) {
             showings.add(new Showing(Integer.parseInt(s.get(0)), s.get(1), s.get(2), Integer.parseInt(s.get(3)), Integer.parseInt(s.get(4))));
