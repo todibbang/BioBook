@@ -21,7 +21,7 @@ public class Frame{
 
 
 
-        frame.setSize(400,400);
+        frame.setSize(900,400);
         //frame.pack();
         frame.setVisible(true);
     }
@@ -51,15 +51,16 @@ public class Frame{
         JTextField passwordTextInput = new JTextField("", 15);
         //c.add(passwordTextInput);
         
-        JLabel getLable = new JLabel("Get:");
+        JLabel getLable = new JLabel("Query:");
         c.add(getLable);
         JTextField getQueryTextInput = new JTextField("", 50);
         c.add(getQueryTextInput);
         
-        JLabel setLable = new JLabel("Set:");
+        /*
+        JLabel setLable = new JLabel("Command:");
         c.add(setLable);
         JTextField setQueryTextInput = new JTextField("", 50);
-        c.add(setQueryTextInput);
+        c.add(setQueryTextInput); */
 
 
         tf.putConstraint(SpringLayout.WEST, unLable, 0, SpringLayout.WEST, p);
@@ -71,14 +72,14 @@ public class Frame{
         tf.putConstraint(SpringLayout.NORTH, passwordTextInput, 40, SpringLayout.NORTH, p);
 
         tf.putConstraint(SpringLayout.NORTH, getQueryTextInput, 80, SpringLayout.NORTH, p);
-        tf.putConstraint(SpringLayout.NORTH, setQueryTextInput, 120, SpringLayout.NORTH, p);
-        tf.putConstraint(SpringLayout.EAST, getQueryTextInput, 400, SpringLayout.EAST, p);
-        tf.putConstraint(SpringLayout.EAST, setQueryTextInput, 400, SpringLayout.EAST, p);
+        //tf.putConstraint(SpringLayout.NORTH, setQueryTextInput, 120, SpringLayout.NORTH, p);
+        tf.putConstraint(SpringLayout.EAST, getQueryTextInput, 500, SpringLayout.EAST, p);
+        //tf.putConstraint(SpringLayout.EAST, setQueryTextInput, 500, SpringLayout.EAST, p);
         tf.putConstraint(SpringLayout.NORTH, getLable, 80, SpringLayout.NORTH, p);
-        tf.putConstraint(SpringLayout.NORTH, setLable, 120, SpringLayout.NORTH, p);
+        //tf.putConstraint(SpringLayout.NORTH, setLable, 120, SpringLayout.NORTH, p);
 
         JButton logIn = new JButton("Command");
-        logIn.addActionListener(e -> HandleCommand(setQueryTextInput.getText()));
+        logIn.addActionListener(e -> HandleQuery(getQueryTextInput.getText()));
         p.add(logIn, BorderLayout.WEST);
 
         JButton Query = new JButton("Query");
@@ -95,12 +96,12 @@ public class Frame{
     }  */
 
     private void HandleQuery(String q) {
-        dbh.executeQuery(q);
-
-    }
-    
-    private void HandleCommand(String q) {
-        dbh.executeCommand(q);
+        if(q.contains("SELECT")) {
+            dbh.executeQuery(q);
+        } else {
+            dbh.executeCommand(q);
+        }
+        
 
     }
 
