@@ -8,6 +8,7 @@ dependency2.type=UsesDependency
 dependency3.from=MovieInformationController
 dependency3.to=Showing
 dependency3.type=UsesDependency
+<<<<<<< Updated upstream
 dependency4.from=Movie
 dependency4.to=MySQL
 dependency4.type=UsesDependency
@@ -18,6 +19,15 @@ package.editor.width=1092
 package.editor.x=38
 package.editor.y=23
 package.numDependencies=4
+=======
+objectbench.height=100
+objectbench.width=1392
+package.editor.height=632
+package.editor.width=1312
+package.editor.x=0
+package.editor.y=40
+package.numDependencies=3
+>>>>>>> Stashed changes
 package.numTargets=13
 package.showExtends=true
 package.showUses=true
@@ -88,10 +98,17 @@ target13.x=770
 target13.y=170
 target2.editor.height=700
 target2.editor.width=900
+<<<<<<< Updated upstream
 target2.editor.x=40
 target2.editor.y=43
 target2.height=30
 target2.name=Frame
+=======
+target2.editor.x=0
+target2.editor.y=135
+target2.height=50
+target2.name=Film
+>>>>>>> Stashed changes
 target2.naviview.expanded=false
 target2.showInterface=false
 target2.type=ClassTarget
@@ -149,12 +166,17 @@ target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
 target6.width=100
-target6.x=420
+target6.x=480
 target6.y=380
 target7.editor.height=700
 target7.editor.width=900
+<<<<<<< Updated upstream
 target7.editor.x=40
 target7.editor.y=43
+=======
+target7.editor.x=145
+target7.editor.y=135
+>>>>>>> Stashed changes
 target7.height=50
 target7.name=MovieInformationController
 target7.naviview.expanded=false
