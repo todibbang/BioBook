@@ -1,45 +1,52 @@
 import java.util.ArrayList;
 
-public class Movie
-{
+public class Movie {
+    private int movieId;
     private String title;
-    private String duration;
+    private String playtime;
     private String imageSource;
+    private String description;
     
-    public Movie(String t, String d, String i)
-    {
-        title = t;
-        duration = d;
-        imageSource = i;
+    public Movie(int movieId, String title, String playtime, String imageSource, String description){
+        this.movieId = movieId;
+        this.title = title;
+        this.playtime = playtime;
+        this.imageSource = imageSource;
+        this.description = description;
+    }
+    
+    public int getMovieId() {
+        return movieId;
     }
     
     public String getTitle() {
         return title;
     }
     
-    public String getDuration() {
-        return duration;
+    public String getPlaytime() {
+        return playtime;
     }
     
     public String getImageSource() {
         return imageSource;
     }
     
-    //lav get methods til fields
-    
-    public static ArrayList<Movie> getAllMovies() 
-    { 
-        ArrayList<ArrayList<String>> movieString = MySQL.getInstance().executeQuery("SELECT * FROM movie");
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        for(ArrayList<String> m : movieString) {
-            movies.add(new Movie(m.get(0), m.get(1), m.get(2)));
-        }
-        
-        for(Movie m : movies) {
-            System.out.println(m.getTitle() + ", " + m.getDuration() + ", " + m.getImageSource());
-        }
-        return movies;
+    public String getDescription() {
+        return description;
     }
     
+    //lav get methods til fields
     
+    public static ArrayList<Movie> getAllMovies(){ 
+        ArrayList<ArrayList<String>> movieString = MySQL.getInstance().executeQuery("SELECT * FROM movies");
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        for(ArrayList<String> m : movieString) {
+            movies.add(new Movie(Integer.parseInt(m.get(0)), m.get(1), m.get(2), m.get(3), m.get(4)));
+        }
+        
+        /*for(Movie m : movies) {
+            System.out.println(m.getTitle() + ", " + m.getDuration() + ", " + m.getImageSource());
+        }*/
+        return movies;
+    }
 }

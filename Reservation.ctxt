@@ -1,6 +1,12 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Reservation()
-comment1.params=id
-comment1.target=Reservation\ getReservation(java.lang.String)
-numComments=2
+comment0.params=reservationId\ number\ name
+comment0.target=Reservation(int,\ int,\ java.lang.String)
+comment1.params=
+comment1.target=int\ getReservationId()
+comment2.params=
+comment2.target=int\ getNumber()
+comment3.params=
+comment3.target=java.lang.String\ getName()
+comment4.params=
+comment4.target=java.util.ArrayList\ getAllReservations()
+numComments=5

@@ -1,12 +1,16 @@
 #BlueJ class context
-comment0.params=t\ d\ i
-comment0.target=Movie(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.params=movieId\ title\ playtime\ imageSource\ description
+comment0.target=Movie(int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.params=
-comment1.target=java.lang.String\ getTitle()
+comment1.target=int\ getMovieId()
 comment2.params=
-comment2.target=java.lang.String\ getDuration()
+comment2.target=java.lang.String\ getTitle()
 comment3.params=
-comment3.target=java.lang.String\ getImageSource()
+comment3.target=java.lang.String\ getPlaytime()
 comment4.params=
-comment4.target=java.util.ArrayList\ getAllMovies()
-numComments=5
+comment4.target=java.lang.String\ getImageSource()
+comment5.params=
+comment5.target=java.lang.String\ getDescription()
+comment6.params=
+comment6.target=java.util.ArrayList\ getAllMovies()
+numComments=7
