@@ -8,7 +8,5 @@ public class MovieInformationController extends MovieInformationGUI
     
     public static void show() {
         Showing.getAllShowings();
-        
-        
     }
 }

@@ -35,18 +35,12 @@ public class Movie {
         return description;
     }
     
-    //lav get methods til fields
-    
     public static ArrayList<Movie> getAllMovies(){ 
         ArrayList<ArrayList<String>> movieString = MySQL.getInstance().executeQuery("SELECT * FROM movies");
         ArrayList<Movie> movies = new ArrayList<Movie>();
         for(ArrayList<String> m : movieString) {
             movies.add(new Movie(Integer.parseInt(m.get(0)), m.get(1), m.get(2), m.get(3), m.get(4)));
         }
-        
-        /*for(Movie m : movies) {
-            System.out.println(m.getTitle() + ", " + m.getDuration() + ", " + m.getImageSource());
-        }*/
         return movies;
     }
 }

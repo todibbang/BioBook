@@ -73,7 +73,7 @@ public class MySQL
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-            //System.out.println("Now is a good time to panic!");
+            System.out.println("Now is a good time to panic!");
         }
         return null;
     }

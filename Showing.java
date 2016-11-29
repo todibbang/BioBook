@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 import java.util.ArrayList;
-/**
- * Write a description of class Visning here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Showing{
     private int showingId;
     private String date;
@@ -50,17 +43,6 @@ public class Showing{
             showings.add(new Showing(Integer.parseInt(s.get(0)), s.get(1), s.get(2), Integer.parseInt(s.get(3)), Integer.parseInt(s.get(4))));
         }
         return showings;
-=======
-public class Showing
-{
-    public Showing()
-    {
-        
-    }
-
-    public static void getAllShowings() { 
-        
->>>>>>> origin/development
     }
 }
 
