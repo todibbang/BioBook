@@ -10,14 +10,13 @@ public class Frame{
 
     public Frame() {
         makeFrame();
-        //dbh = new MySQL();
+        dbh = MySQL.getInstance();
     }
 
     private void makeFrame() {
         frame = new JFrame();
         JPanel contentPane = (JPanel) frame.getContentPane();
         setLogInScreen(contentPane);
-
 
 
 
