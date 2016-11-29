@@ -5,13 +5,13 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AlleFilmController extends AlleFilmGUI
+public class DisplayAllMoviesController extends DisplayAllMoviesGUI
 {
-     public AlleFilmController()
+     public DisplayAllMoviesController()
     {
-        Film.getAllMovies();
+        Movie.getAllMovies();
         
-        FilmInformationController.show();
+        MovieInformationController.show();
         
     }
 

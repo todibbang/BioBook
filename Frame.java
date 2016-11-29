@@ -10,7 +10,7 @@ public class Frame{
 
     public Frame() {
         makeFrame();
-        dbh = new MySQL();
+        //dbh = new MySQL();
     }
 
     private void makeFrame() {

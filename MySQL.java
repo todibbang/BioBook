@@ -72,8 +72,7 @@ public class MySQL
                 columns[i-1] = rsmd.getColumnName(i);
                 columnData.add(rsmd.getColumnName(i));
             }
-            //resultStrings.add(columnData);
-            
+
             while (rs.next()) {
                 ArrayList<String> thisRs = new ArrayList<String>();
                 for(int i = 0; i < columns.length; i++) {

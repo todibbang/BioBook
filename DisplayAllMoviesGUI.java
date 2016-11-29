@@ -1,4 +1,4 @@
-public class AlleFilmGUI extends Frame
+public class DisplayAllMoviesGUI extends Frame
 {
     // instance variables - replace the example below with your own
     private int x;
@@ -6,7 +6,7 @@ public class AlleFilmGUI extends Frame
     /**
      * Constructor for objects of class Forestillinger_GUI
      */
-    public AlleFilmGUI()
+    public DisplayAllMoviesGUI()
     {
         new Frame();
     }
