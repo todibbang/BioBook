@@ -57,6 +57,8 @@ public class MySQL
                 
                 for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                     columns[i-1] = rsmd.getColumnName(i);
+                    
+                    System.out.println(rsmd.getColumnName(i));
                 } 
     
                 while (data.next()) {

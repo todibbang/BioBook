@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=seatId\ row\ col\ roomId\ reservationId
+comment0.target=Seat(int,\ java.lang.String,\ int,\ int,\ int)
+comment1.params=
+comment1.target=int\ getSeatId()
+comment2.params=
+comment2.target=java.lang.String\ getRow()
+comment3.params=
+comment3.target=int\ getCol()
+comment4.params=
+comment4.target=int\ getRoomId()
+comment5.params=
+comment5.target=int\ getReservationId()
+comment6.params=roomId
+comment6.target=java.util.ArrayList\ getAllSeatsFromRoomId(int)
+comment7.params=roomId
+comment7.target=java.util.ArrayList\ getAllReservedSeatsFromRoomId(int)
+numComments=8

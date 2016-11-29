@@ -50,7 +50,7 @@ target1.typeParameters=
 target1.width=80
 target1.x=110
 target1.y=380
-target10.editor.height=854
+target10.editor.height=812
 target10.editor.width=1348
 target10.editor.x=0
 target10.editor.y=23
@@ -167,6 +167,7 @@ target5.typeParameters=
 target5.width=160
 target5.x=680
 target5.y=370
+<<<<<<< Updated upstream
 target6.editor.height=700
 target6.editor.width=900
 target6.editor.x=40
@@ -174,11 +175,15 @@ target6.editor.y=60
 target6.height=50
 target6.name=ReservationGUI
 target6.naviview.expanded=false
+=======
+target6.height=50
+target6.name=ReservationGUI
+>>>>>>> Stashed changes
 target6.showInterface=false
 target6.type=ClassTarget
 target6.typeParameters=
 target6.width=120
-target6.x=490
+target6.x=500
 target6.y=170
 target7.editor.height=700
 target7.editor.width=900
