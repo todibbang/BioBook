@@ -22,7 +22,7 @@ public class MySQL
     
 
     // Private - part of singleton pattern.
-    public MySQL()
+    private MySQL()
     {
         try {
             //Necessary in BlueJ, not in Eclipse and IntelliJ ...
@@ -48,46 +48,34 @@ public class MySQL
             
             System.out.println("SUCCESS \n");
             
-            return PrintResultSet(data);
-            
+            ArrayList<ArrayList<String>> resultStrings = new ArrayList<ArrayList<String>>();
+        
+            String columns [];
+            try {
+                ResultSetMetaData rsmd = data.getMetaData();
+                columns = new String [rsmd.getColumnCount()];
+                
+                for(int i = 1; i <= rsmd.getColumnCount(); i++) {
+                    columns[i-1] = rsmd.getColumnName(i);
+                } 
+    
+                while (data.next()) {
+                    ArrayList<String> thisRs = new ArrayList<String>();
+                    for(int i = 0; i < columns.length; i++) {
+                        thisRs.add(data.getString(columns[i]));
+                    }
+                    resultStrings.add(thisRs);
+                }
+            } catch (SQLException se) {
+                System.out.println(se.getMessage());
+            }
+            return resultStrings;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             //System.out.println("Now is a good time to panic!");
         }
         return null;
-    }
-    
-    private ArrayList<ArrayList<String>> PrintResultSet(ResultSet rs) {
-        ArrayList<ArrayList<String>> resultStrings = new ArrayList<ArrayList<String>>();
-        
-        String columns [];
-        try {
-            ResultSetMetaData rsmd = rs.getMetaData();
-            columns = new String [rsmd.getColumnCount()];
-            
-            ArrayList<String> columnData = new ArrayList<String>();
-            for(int i = 1; i <= rsmd.getColumnCount(); i++) {
-                //System.out.print(rsmd.getColumnName(i) + ", ");
-                columns[i-1] = rsmd.getColumnName(i);
-                columnData.add(rsmd.getColumnName(i));
-            }
-
-            while (rs.next()) {
-                ArrayList<String> thisRs = new ArrayList<String>();
-                for(int i = 0; i < columns.length; i++) {
-                    //System.out.print(rs.getString(columns[i]) + ", ");
-                    thisRs.add(rs.getString(columns[i]));
-                }
-                resultStrings.add(thisRs);
-                //System.out.println();
-            }
-
-        } catch (SQLException se) {
-            System.out.println(se.getMessage());
-        }
-        
-        return resultStrings;
     }
 
     public int executeCommand(String statement) {
