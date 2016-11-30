@@ -58,15 +58,17 @@ public class MySQL
                 for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                     columns[i-1] = rsmd.getColumnName(i);
                     
-                    System.out.println(rsmd.getColumnName(i));
+                    System.out.print(rsmd.getColumnName(i) + ", ");
                 } 
-    
+                System.out.println("");
                 while (data.next()) {
                     ArrayList<String> thisRs = new ArrayList<String>();
                     for(int i = 0; i < columns.length; i++) {
                         thisRs.add(data.getString(columns[i]));
+                        System.out.print(data.getString(columns[i]) + ", ");
                     }
                     resultStrings.add(thisRs);
+                    System.out.println("");
                 }
             } catch (SQLException se) {
                 System.out.println(se.getMessage());

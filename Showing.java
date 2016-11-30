@@ -37,12 +37,12 @@ public class Showing{
     //lav get methods til fields
     public static ArrayList<Showing> getAllShowings() 
     { 
-        return getShowings("SELECT * FROM showing");
+        return getShowings("SELECT * FROM showing ");
     }
     
-    public static ArrayList<Showing> getShowingFromMovieTitle(Movie m) 
+    public static ArrayList<Showing> getShowingFromMovieTitle(int id) 
     { 
-        return getShowings("SELECT * FROM showing WHERE movieId = " + m.getMovieId());
+        return getShowings("SELECT * FROM showing WHERE movieId = " + id);
     }
     
     public static ArrayList<Showing> getShowingFromDate(String d) 
