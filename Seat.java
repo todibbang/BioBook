@@ -95,9 +95,9 @@ public class Seat {
     }
     
     
-    public static void findFreeSeats(int lengthRequired) {
-         ArrayList<Seat> seats = getAllSeatsForShowing(1);
-         ArrayList<Seat> takenSeats = getAllReservedSeatsForShowing(1);
+    public static void findFreeSeats(int lengthRequired, int showing) {
+         ArrayList<Seat> seats = getAllSeatsForShowing(showing);
+         ArrayList<Seat> takenSeats = getAllReservedSeatsForShowing(showing);
          
          for(Seat s : seats) {
              for(Seat st : takenSeats) {
@@ -138,6 +138,7 @@ public class Seat {
                  System.out.print(" "+s.getRow() + s.getCol() + "  ");
              }
              prevousRow = s.getRow();
+             System.out.println("\n'|' means the seat is reserved___':' means the seats is free and qualified for your requirements");
          }
     }
 }
