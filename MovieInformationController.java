@@ -1,4 +1,4 @@
-public class MovieInformationController extends MovieInformationGUI
+public class MovieInformationController //extends MovieInformationGUI
 {
     public MovieInformationController()
     {

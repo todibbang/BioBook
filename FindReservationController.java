@@ -1,4 +1,4 @@
-public class FindReservationController extends FindReservationGUI
+public class FindReservationController //extends FindReservationGUI
 {
     public FindReservationController()
     {

@@ -1,4 +1,4 @@
-public class DisplayAllMoviesController extends DisplayAllMoviesGUI
+public class DisplayAllMoviesController //extends DisplayAllMoviesGUI
 {
      public DisplayAllMoviesController()
     {
