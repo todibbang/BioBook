@@ -37,6 +37,10 @@ public class Demo
         dbh.executeCommand(s);
     }
     
+    public static void addMovies() { 
+        MySQL.getInstance().executeCommand("INSERT INTO movies (title, playtime, description, imageSource) VALUES ('The Dark Knight', 100, 'EN FEEED FILM', 'image_source.png')," +
+        "('The Dark Knight Rises', 100, 'EN FEEED FILM', 'image_source.png'), ('The Dark Knight Falls', 100, 'EN FEEED FILM', 'image_source.png')");
+    }
     
     
     public static void createReservation() {

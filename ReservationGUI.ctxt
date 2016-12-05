@@ -1,4 +1,8 @@
 #BlueJ class context
 comment0.params=
 comment0.target=ReservationGUI()
-numComments=1
+comment1.params=
+comment1.target=void\ setGUIVisible()
+comment2.params=
+comment2.target=ReservationGUI\ getInstance()
+numComments=3

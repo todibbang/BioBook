@@ -1,6 +1,22 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Frame()
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-numComments=2
+comment1.params=
+comment1.target=void\ makeFrame()
+comment2.params=
+comment2.target=void\ setMainFrame()
+comment3.params=
+comment3.target=void\ setMovieListView()
+comment4.params=
+comment4.target=void\ setBookMovieView()
+comment5.params=
+comment5.target=void\ setManageReservationView()
+comment6.params=content
+comment6.target=void\ setMainContainer(java.awt.Container)
+comment7.params=i
+comment7.target=void\ makeButton(int)
+comment8.params=args
+comment8.target=void\ main(java.lang.String[])
+comment9.params=
+comment9.target=Frame\ getInstance()
+numComments=10

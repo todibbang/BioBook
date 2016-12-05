@@ -1,4 +1,8 @@
 #BlueJ class context
 comment0.params=
 comment0.target=DisplayAllMoviesController()
-numComments=1
+comment1.params=
+comment1.target=void\ drawGUI()
+comment2.params=
+comment2.target=DisplayAllMoviesController\ getInstance()
+numComments=3
