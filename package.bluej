@@ -65,6 +65,7 @@ dependency8.type=UsesDependency
 dependency9.from=Seat
 dependency9.to=MySQL
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 objectbench.height=83
 objectbench.width=1120
 package.editor.height=587
@@ -72,7 +73,34 @@ package.editor.width=1040
 package.editor.x=78
 package.editor.y=59
 package.numDependencies=22
+=======
+<<<<<<< Updated upstream
+objectbench.height=100
+objectbench.width=1392
+package.editor.height=632
+package.editor.width=1312
+=======
+objectbench.height=76
+objectbench.width=1232
+package.editor.height=634
+package.editor.width=1152
+>>>>>>> Stashed changes
+package.editor.x=0
+<<<<<<< Updated upstream
+package.editor.y=40
+<<<<<<< Updated upstream
+package.numDependencies=11
+>>>>>>> Stashed changes
 package.numTargets=17
+=======
+package.numDependencies=12
+package.numTargets=16
+=======
+package.editor.y=23
+package.numDependencies=9
+package.numTargets=14
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
@@ -89,12 +117,21 @@ target1.typeParameters=
 target1.width=80
 target1.x=130
 target1.y=380
+<<<<<<< Updated upstream
 target10.editor.height=700
 target10.editor.width=900
 target10.editor.x=468
 target10.editor.y=42
 target10.height=50
 target10.name=Reservation
+=======
+target10.editor.height=753
+target10.editor.width=699
+target10.editor.x=0
+target10.editor.y=24
+target10.height=100
+target10.name=MySQL
+>>>>>>> Stashed changes
 target10.naviview.expanded=false
 target10.showInterface=false
 target10.type=ClassTarget
@@ -195,8 +232,13 @@ target17.x=700
 target17.y=170
 target2.editor.height=700
 target2.editor.width=900
+<<<<<<< Updated upstream
 target2.editor.x=54
 target2.editor.y=282
+=======
+target2.editor.x=40
+target2.editor.y=43
+>>>>>>> Stashed changes
 target2.height=50
 target2.name=Frame
 target2.naviview.expanded=true
@@ -273,8 +315,13 @@ target7.x=680
 target7.y=370
 target8.editor.height=700
 target8.editor.width=900
+<<<<<<< Updated upstream
 target8.editor.x=40
 target8.editor.y=60
+=======
+target8.editor.x=380
+target8.editor.y=42
+>>>>>>> Stashed changes
 target8.height=50
 target8.name=ReservationGUI
 target8.naviview.expanded=false
@@ -283,7 +330,11 @@ target8.type=ClassTarget
 target8.typeParameters=
 target8.width=120
 target8.x=500
+<<<<<<< Updated upstream
 target8.y=170
+=======
+target8.y=380
+>>>>>>> Stashed changes
 target9.editor.height=700
 target9.editor.width=900
 target9.editor.x=39
