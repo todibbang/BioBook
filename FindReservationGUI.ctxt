@@ -5,13 +5,9 @@ comment1.params=
 comment1.target=void\ setGUIVisible()
 comment2.params=
 comment2.target=java.awt.Container\ searchFields()
-comment2.text=private\ Container\ setUpSearch()\ {\n\ \ \ \ \ \ \ \ \ \ \ \ //\ Set\ up\ the\ name\ field.\n\ \ \ \ \ \ \ \ Box\ nameLabelArea\ \=\ Box.createHorizontalBox();\n\ \ \ \ \ \ \ \ nameLabelArea.add(new\ JLabel("Name",\ JLabel.LEFT));\n\ \ \ \ \ \ \ \ nameLabelArea.add(Box.createGlue());\n\ \ \ \ \ \ \ \ final\ JTextField\ nameField\ \=\ new\ JTextField(50);\n\ \ \ \ \ \ \ \ Box\ nameArea\ \=\ Box.createVerticalBox();\n\ \ \ \ \ \ \ \ nameArea.add(nameLabelArea);\n\ \ \ \ \ \ \ \ nameArea.add(nameField);\n\n\ \ \ \ \ \ \ \ //\ Set\ up\ the\ number\ number\ area.\n\ \ \ \ \ \ \ \ Box\ numberLabelArea\ \=\ Box.createHorizontalBox();\n\ \ \ \ \ \ \ \ numberLabelArea.add(new\ JLabel("Phone",\ JLabel.LEFT));\n\ \ \ \ \ \ \ \ numberLabelArea.add(Box.createGlue());\n\ \ \ \ \ \ \ \ final\ JTextField\ numberField\ \=\ new\ JTextField(50);\n\ \ \ \ \ \ \ \ Box\ numberArea\ \=\ Box.createVerticalBox();\n\ \ \ \ \ \ \ \ numberArea.add(numberLabelArea);\n\ \ \ \ \ \ \ \ numberArea.add(numberField);\n\ \ \ \ \n}
 comment3.params=
-comment3.target=java.lang.String\ getNameField()
+comment3.target=java.awt.Container\ reservationGrid()
 comment4.params=
-comment4.target=java.lang.String\ getPhoneField()
-comment5.params=listener
-comment5.target=void\ addListenerToSearch(java.awt.event.ActionListener)
-comment6.params=
-comment6.target=FindReservationGUI\ getInstance()
-numComments=7
+comment4.target=FindReservationGUI\ getInstance()
+comment4.text=\n\ \ \ \ public\ String\ getNameField()\ {\n\ \ \ \ return\ nameField;\n\ \ \ \ }\n\n\ \ \ \ public\ String\ getPhoneField()\ {\n\ \ \ \ return\ numberField;\n\ \ \ \ }\n\n\ \ \ \ public\ void\ addListenerToSearch(ActionListener\ listener)\n\ \ \ \ {\n\ \ \ \ \ \ \ \ search.addActionListener(listener);\n}
+numComments=5

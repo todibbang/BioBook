@@ -2,32 +2,17 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 public class FindReservationController{
-    
+    Reservation r;
     public FindReservationController(){
         
     }
-    /*
-    public void handleInput() {
-        System.out.println("Hej");
-        FindReservationGUI.getInstance().addListenerToSearch((ActionEvent e) -> {
-            //searchForInput(ui.getNameField().getText(), ui.getPhoneField().getText());
-            
-            System.out.println("Carl");
-        });
-
-    }
-    
-    /*
-    public void handleInputV2() {
-        ui = ReservationGUI.getInstance();
-        ui.addActionListener(e -> searchForInput(ui.getNameField().getText(), ui.getPhoneField().getText()));
-    }*/
     
     public static void searchForInput(String number, String name) {
-        
-        Reservation.getReservation(number, name);
-        
-        
+        Reservation r = Reservation.getReservation(number, name);
+    }
+    
+    public void getInformation() {
+        r.getReservationDetails(r.getReservationId());
     }
 }
     /*

@@ -3,5 +3,6 @@ comment0.params=
 comment0.target=FindReservationController()
 comment1.params=number\ name
 comment1.target=void\ searchForInput(java.lang.String,\ java.lang.String)
-comment1.text=\n\ \ \ \ public\ void\ handleInput()\ {\n\ \ \ \ \ \ \ \ System.out.println("Hej");\n\ \ \ \ \ \ \ \ FindReservationGUI.getInstance().addListenerToSearch((ActionEvent\ e)\ ->\ {\n\ \ \ \ \ \ \ \ \ \ \ \ //searchForInput(ui.getNameField().getText(),\ ui.getPhoneField().getText());\n\ \ \ \ \ \ \ \ \ \ \ \ \n\ \ \ \ \ \ \ \ \ \ \ \ System.out.println("Carl");\n\ \ \ \ \ \ \ \ });\n\n\ \ \ \ }\n\ \ \ \ \n\ \ \ \ /*\n\ \ \ \ public\ void\ handleInputV2()\ {\n\ \ \ \ \ \ \ \ ui\ \=\ ReservationGUI.getInstance();\n\ \ \ \ \ \ \ \ ui.addActionListener(e\ ->\ searchForInput(ui.getNameField().getText(),\ ui.getPhoneField().getText()));\n}
-numComments=2
+comment2.params=
+comment2.target=void\ getInformation()
+numComments=3

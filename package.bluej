@@ -8,6 +8,7 @@ dependency10.type=UsesDependency
 dependency11.from=CreateCustomerGUI
 dependency11.to=CreateCustomerController
 dependency11.type=UsesDependency
+<<<<<<< Updated upstream
 dependency12.from=FindReservationGUI
 dependency12.to=FindReservationController
 dependency12.type=UsesDependency
@@ -29,6 +30,50 @@ dependency17.type=UsesDependency
 dependency2.from=DisplayAllMoviesController
 dependency2.to=MovieInformationController
 dependency2.type=UsesDependency
+=======
+dependency12.from=DisplayAllMoviesGUI
+dependency12.to=Movie
+dependency12.type=UsesDependency
+dependency13.from=Frame
+dependency13.to=DisplayAllMoviesController
+dependency13.type=UsesDependency
+dependency14.from=Demo
+dependency14.to=Reservation
+dependency14.type=UsesDependency
+dependency15.from=Frame
+dependency15.to=FindReservationGUI
+dependency15.type=UsesDependency
+dependency16.from=FindReservationGUI
+dependency16.to=FindReservationController
+dependency16.type=UsesDependency
+dependency17.from=FindReservationController
+dependency17.to=FindReservationGUI
+dependency17.type=UsesDependency
+dependency18.from=FindReservationController
+dependency18.to=Reservation
+dependency18.type=UsesDependency
+dependency19.from=FindReservationController
+dependency19.to=ReservationGUI
+dependency19.type=UsesDependency
+dependency2.from=DisplayAllMoviesController
+dependency2.to=MovieInformationController
+dependency2.type=UsesDependency
+dependency20.from=FindReservationGUI
+dependency20.to=Reservation
+dependency20.type=UsesDependency
+dependency21.from=FindReservationGUI
+dependency21.to=Frame
+dependency21.type=UsesDependency
+dependency22.from=FindReservationGUI
+dependency22.to=Movie
+dependency22.type=UsesDependency
+dependency23.from=Frame
+dependency23.to=MovieInformationGUI
+dependency23.type=UsesDependency
+dependency24.from=FindReservationGUI
+dependency24.to=MovieInformationGUI
+dependency24.type=UsesDependency
+>>>>>>> Stashed changes
 dependency3.from=MovieInformationController
 dependency3.to=Showing
 dependency3.type=UsesDependency
@@ -51,12 +96,21 @@ dependency9.from=Seat
 dependency9.to=MySQL
 dependency9.type=UsesDependency
 objectbench.height=100
+<<<<<<< Updated upstream
 objectbench.width=882
 package.editor.height=461
 package.editor.width=1079
 package.editor.x=73
 package.editor.y=56
 package.numDependencies=17
+=======
+objectbench.width=1392
+package.editor.height=587
+package.editor.width=1312
+package.editor.x=40
+package.editor.y=99
+package.numDependencies=24
+>>>>>>> Stashed changes
 package.numTargets=19
 package.showExtends=true
 package.showUses=true
@@ -84,9 +138,15 @@ target10.naviview.expanded=false
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
+<<<<<<< Updated upstream
 target10.width=190
 target10.x=710
 target10.y=260
+=======
+target10.width=100
+target10.x=720
+target10.y=460
+>>>>>>> Stashed changes
 target11.editor.height=700
 target11.editor.width=900
 target11.editor.x=39
@@ -111,8 +171,8 @@ target12.showInterface=false
 target12.type=ClassTarget
 target12.typeParameters=
 target12.width=100
-target12.x=400
-target12.y=380
+target12.x=560
+target12.y=90
 target13.editor.height=700
 target13.editor.width=900
 target13.editor.x=40
@@ -136,9 +196,15 @@ target14.naviview.expanded=false
 target14.showInterface=false
 target14.type=ClassTarget
 target14.typeParameters=
+<<<<<<< Updated upstream
 target14.width=190
 target14.x=350
 target14.y=510
+=======
+target14.width=200
+target14.x=0
+target14.y=270
+>>>>>>> Stashed changes
 target15.editor.height=700
 target15.editor.width=900
 target15.editor.x=40
@@ -162,6 +228,7 @@ target16.naviview.expanded=false
 target16.showInterface=false
 target16.type=ClassTarget
 target16.typeParameters=
+<<<<<<< Updated upstream
 target16.width=200
 target16.x=10
 target16.y=260
@@ -169,13 +236,18 @@ target17.editor.height=700
 target17.editor.width=900
 target17.editor.x=40
 target17.editor.y=43
+=======
+target16.width=190
+target16.x=1080
+target16.y=400
+>>>>>>> Stashed changes
 target17.height=50
 target17.name=DemoUi
-target17.naviview.expanded=false
 target17.showInterface=false
 target17.type=ClassTarget
 target17.typeParameters=
 target17.width=80
+<<<<<<< Updated upstream
 target17.x=850
 target17.y=110
 target18.editor.height=700
@@ -185,29 +257,49 @@ target18.editor.y=76
 target18.height=50
 target18.name=FindReservationController
 target18.naviview.expanded=false
+=======
+target17.x=200
+target17.y=10
+target18.editor.height=700
+target18.editor.width=900
+target18.editor.x=80
+target18.editor.y=119
+target18.height=50
+target18.name=FindReservationController
+target18.naviview.expanded=true
+>>>>>>> Stashed changes
 target18.showInterface=false
 target18.type=ClassTarget
 target18.typeParameters=
 target18.width=190
-target18.x=510
-target18.y=160
+target18.x=810
+target18.y=80
 target19.editor.height=700
 target19.editor.width=900
-target19.editor.x=225
-target19.editor.y=76
+target19.editor.x=40
+target19.editor.y=43
 target19.height=50
 target19.name=FindReservationGUI
-target19.naviview.expanded=false
+target19.naviview.expanded=true
 target19.showInterface=false
 target19.type=ClassTarget
 target19.typeParameters=
 target19.width=150
+<<<<<<< Updated upstream
 target19.x=530
 target19.y=100
 target2.editor.height=602
 target2.editor.width=881
 target2.editor.x=399
 target2.editor.y=95
+=======
+target19.x=1060
+target19.y=210
+target2.editor.height=762
+target2.editor.width=1243
+target2.editor.x=0
+target2.editor.y=73
+>>>>>>> Stashed changes
 target2.height=50
 target2.name=CreateCustomerGUI
 target2.naviview.expanded=false
@@ -215,12 +307,21 @@ target2.showInterface=false
 target2.type=ClassTarget
 target2.typeParameters=
 target2.width=150
+<<<<<<< Updated upstream
 target2.x=850
 target2.y=170
 target3.editor.height=700
 target3.editor.width=900
 target3.editor.x=40
 target3.editor.y=43
+=======
+target2.x=730
+target2.y=180
+target3.editor.height=700
+target3.editor.width=900
+target3.editor.x=54
+target3.editor.y=135
+>>>>>>> Stashed changes
 target3.height=50
 target3.name=Frame
 target3.naviview.expanded=true
@@ -228,12 +329,21 @@ target3.showInterface=false
 target3.type=ClassTarget
 target3.typeParameters=
 target3.width=80
+<<<<<<< Updated upstream
 target3.x=370
 target3.y=20
 target4.editor.height=754
 target4.editor.width=1116
 target4.editor.x=0
 target4.editor.y=23
+=======
+target3.x=410
+target3.y=20
+target4.editor.height=773
+target4.editor.width=1280
+target4.editor.x=0
+target4.editor.y=32
+>>>>>>> Stashed changes
 target4.height=50
 target4.name=Seat
 target4.naviview.expanded=true
@@ -253,6 +363,7 @@ target5.naviview.expanded=true
 target5.showInterface=false
 target5.type=ClassTarget
 target5.typeParameters=
+<<<<<<< Updated upstream
 target5.width=80
 target5.x=860
 target5.y=40
@@ -260,6 +371,15 @@ target6.editor.height=700
 target6.editor.width=900
 target6.editor.x=95
 target6.editor.y=78
+=======
+target5.width=150
+target5.x=130
+target5.y=110
+target6.editor.height=685
+target6.editor.width=1126
+target6.editor.x=0
+target6.editor.y=150
+>>>>>>> Stashed changes
 target6.height=50
 target6.name=DisplayAllMoviesGUI
 target6.naviview.expanded=false
@@ -280,8 +400,13 @@ target7.showInterface=false
 target7.type=ClassTarget
 target7.typeParameters=
 target7.width=160
+<<<<<<< Updated upstream
 target7.x=490
 target7.y=320
+=======
+target7.x=500
+target7.y=340
+>>>>>>> Stashed changes
 target8.editor.height=700
 target8.editor.width=900
 target8.editor.x=40

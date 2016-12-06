@@ -48,7 +48,7 @@ public class Frame extends JComponent{
         DisplayAllMoviesController.getInstance().drawGUI();
     }
 
-    private void setBookMovieView() {
+    public void setBookMovieView() {
         MovieInformationGUI.getInstance().setGUIVisible();
     }
 
