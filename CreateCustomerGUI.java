@@ -50,10 +50,7 @@ public class CreateCustomerGUI extends JComponent
         JPanel buttonArea = new JPanel();
         buttonArea.setLayout(new FlowLayout());
 
-        JButton cancelButton = new JButton("Cancel...");
-        buttonArea.add(cancelButton);
-
-        JButton confirmButton = new JButton("Confirm...");
+        JButton confirmButton = new JButton("Confirm");
         buttonArea.add(confirmButton);
 
         JPanel thePanel = new JPanel();
