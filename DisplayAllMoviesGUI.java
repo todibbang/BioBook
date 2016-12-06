@@ -3,10 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
 
+
 public class DisplayAllMoviesGUI extends JComponent
 {
     private static DisplayAllMoviesGUI instance;
-    
     private DisplayAllMoviesGUI()
     {
        
@@ -21,9 +21,12 @@ public class DisplayAllMoviesGUI extends JComponent
         test.setSize(900, 1000);
         
         for(int i = 0; i < movies.size(); i++) {
-            JButton b = new JButton("DisplayAllMoviesGUI: " + movies.get(i).getTitle());
-            b.setPreferredSize(new Dimension(900,100));
-            b.setSize(900, 100);
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(movies.get(i).getImageSource()).getImage().getScaledInstance(450, 100, Image.SCALE_DEFAULT));
+            JButton b = new JButton(movies.get(i).getTitle(), imageIcon);
+            b.setVerticalTextPosition(SwingConstants.BOTTOM);
+            b.setHorizontalTextPosition(SwingConstants.CENTER);
+            //b.setPreferredSize(new Dimension(900,300));
+            b.setSize(900, 300);
             test.add(b);
         }
         
@@ -32,7 +35,7 @@ public class DisplayAllMoviesGUI extends JComponent
         borderLayout.add(test);
         borderLayout.setSize(900,1000);
         
-        JScrollPane scrollLayout = new JScrollPane(borderLayout, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollLayout = new JScrollPane(borderLayout, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollLayout.setSize(900, 1000);
         
         Frame.getInstance().setMainContainer(scrollLayout);

@@ -29,13 +29,13 @@ public class Frame extends JComponent{
         topMenuGrid.setLayout(new GridLayout());
         topMenuGrid.setPreferredSize(new Dimension(100, 100));
 
-        JButton MovieListButton = new JButton("Numse 1");
+        JButton MovieListButton = new JButton("Movie list");
         MovieListButton.addActionListener(e -> setMovieListView());
 
-        JButton BookMovieButton = new JButton("Numse 2");
+        JButton BookMovieButton = new JButton("Book movie");
         BookMovieButton.addActionListener(e -> setBookMovieView());
 
-        JButton ManageReservationButton = new JButton("Numse 3");
+        JButton ManageReservationButton = new JButton("Change reservations");
         ManageReservationButton.addActionListener(e -> setManageReservationView());
 
         topMenuGrid.add(MovieListButton);
@@ -53,7 +53,7 @@ public class Frame extends JComponent{
     }
 
     private void setManageReservationView() {
-        ReservationGUI.getInstance().setGUIVisible();
+        FindReservationGUI.getInstance().setGUIVisible();
     }
 
     public void setMainContainer(Container content) {

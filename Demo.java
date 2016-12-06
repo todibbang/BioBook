@@ -38,8 +38,8 @@ public class Demo
     }
     
     public static void addMovies() { 
-        MySQL.getInstance().executeCommand("INSERT INTO movies (title, playtime, description, imageSource) VALUES ('The Dark Knight', 100, 'EN FEEED FILM', 'image_source.png')," +
-        "('The Dark Knight Rises', 100, 'EN FEEED FILM', 'image_source.png'), ('The Dark Knight Falls', 100, 'EN FEEED FILM', 'image_source.png')");
+        MySQL.getInstance().executeCommand("INSERT INTO movies (title, playtime, description, imageSource) VALUES ('The Dark Knight', 120, 'EN FEEED FILM', 'DK600.jpg')," +
+        "('Inception', 141, 'EN FEEED FILM', 'inception.jpg'), ('Find Nemo', 90, 'EN FEEED FILM', 'findnemo.jpg'), ('The Devil Wears Prada', 110, 'EN FEEED FILM', 'devilwearsprada.jpg')");
     }
     
     
