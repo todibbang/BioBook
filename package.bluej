@@ -133,7 +133,10 @@ target12.editor.x=40
 target12.editor.y=43
 target12.height=50
 target12.name=MainController
+<<<<<<< HEAD
 target12.naviview.expanded=true
+=======
+>>>>>>> origin/development
 target12.showInterface=false
 target12.type=ClassTarget
 target12.typeParameters=
