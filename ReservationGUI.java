@@ -116,10 +116,6 @@ public class ReservationGUI
         Frame.getInstance().setMainContainer(mainContainer);
     }
     
-    
-    
-    
-    
     public static ReservationGUI getInstance()
     {
         if(instance == null) {instance = new ReservationGUI();}

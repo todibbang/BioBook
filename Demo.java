@@ -48,9 +48,9 @@ public class Demo
         
         MainController.addReservation("12345678", "Lil dick");
         
-        Reservation r = MainController.getReservation("12345678", "Lil dick");
+       // ArrayList<Reservation> r = MainController.getReservations("12345678", "Lil dick");
         
-        MainController.addShowingReservation(8, r.getReservationId(), new int [] {10,11,12});
+      //  MainController.addShowingReservation(8, r.getReservationId(), new int [] {10,11,12});
         
         
         

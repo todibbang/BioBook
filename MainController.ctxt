@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=number\ name
-comment0.target=void\ searchForInput(java.lang.String,\ java.lang.String)
+comment0.target=java.util.ArrayList\ searchForInput(java.lang.String,\ java.lang.String)
 comment1.params=statement
 comment1.target=java.util.ArrayList\ getShowings(java.lang.String)
 comment10.params=number\ name
@@ -8,9 +8,9 @@ comment10.target=int\ addReservation(java.lang.String,\ java.lang.String)
 comment11.params=showingId\ reservationId\ seatIds
 comment11.target=int\ addShowingReservation(int,\ int,\ int[])
 comment12.params=number\ name
-comment12.target=Reservation\ getReservation(java.lang.String,\ java.lang.String)
+comment12.target=java.util.ArrayList\ getReservations(java.lang.String,\ java.lang.String)
 comment13.params=reservationId
-comment13.target=void\ getUserReservation(int)
+comment13.target=java.util.ArrayList\ getUserReservation(int)
 comment14.params=showingId
 comment14.target=java.util.ArrayList\ getAllSeatsForShowing(int)
 comment15.params=lengthRequired\ showing
