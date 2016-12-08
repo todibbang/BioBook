@@ -7,6 +7,4 @@ comment2.params=
 comment2.target=int\ getReservationId()
 comment3.params=
 comment3.target=int\ getSeatId()
-comment4.params=
-comment4.target=java.util.ArrayList\ getAllShowingReservations()
-numComments=5
+numComments=4

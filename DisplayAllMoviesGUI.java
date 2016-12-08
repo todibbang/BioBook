@@ -14,27 +14,26 @@ public class DisplayAllMoviesGUI extends JComponent
     
     
     public void setGUIVisible() {
-        ArrayList<Movie> movies = Movie.getAllMovies();
+        ArrayList<Movie> movies = MainController.getAllMovies();
         
-        Container test = new Container();
+        Container MainContainer = new Container();
         
         //test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
-        test.setLayout(new GridLayout(10,1));
-        test.setSize(900, 1000);
+        MainContainer.setLayout(new GridLayout(10,1));
+        MainContainer.setSize(900, 1000);
         
         for(int i = 0; i < movies.size(); i++) {
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(movies.get(i).getImageSource()).getImage().getScaledInstance(450, 100, Image.SCALE_DEFAULT));
-            JButton b = new JButton(movies.get(i).getTitle(), imageIcon);
-            b.setVerticalTextPosition(SwingConstants.BOTTOM);
-            b.setHorizontalTextPosition(SwingConstants.CENTER);
-            //b.setPreferredSize(new Dimension(900,300));
-            b.setSize(900, 300);
-            test.add(b);
+            JButton movieButton = new JButton(movies.get(i).getTitle(), imageIcon);
+            movieButton.setVerticalTextPosition(SwingConstants.BOTTOM);
+            movieButton.setHorizontalTextPosition(SwingConstants.CENTER);
+            movieButton.setSize(900, 300);
+            MainContainer.add(movieButton);
         }
         
         Container borderLayout = new Container();
         borderLayout.setLayout(new BorderLayout());
-        borderLayout.add(test);
+        borderLayout.add(MainContainer);
         borderLayout.setSize(900,1000);
         
         JScrollPane scrollLayout = new JScrollPane(borderLayout, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
