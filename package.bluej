@@ -74,10 +74,17 @@ dependency30.type=UsesDependency
 dependency31.from=ReservationGUI
 dependency31.to=CreateCustomerGUI
 dependency31.type=UsesDependency
+<<<<<<< Updated upstream
 dependency32.from=CreateCustomerGUI
 dependency32.to=MainController
 dependency32.type=UsesDependency
 dependency33.from=MainController
+=======
+dependency32.from=MainController
+dependency32.to=InformationModel
+dependency32.type=UsesDependency
+dependency33.from=FindReservationGUI
+>>>>>>> Stashed changes
 dependency33.to=InformationModel
 dependency33.type=UsesDependency
 dependency34.from=DisplayAllMoviesGUI
@@ -105,12 +112,16 @@ dependency9.from=DisplayAllMoviesGUI
 dependency9.to=Movie
 dependency9.type=UsesDependency
 objectbench.height=76
-objectbench.width=1420
+objectbench.width=1392
 package.editor.height=673
 package.editor.width=1312
 package.editor.x=0
 package.editor.y=23
+<<<<<<< Updated upstream
 package.numDependencies=35
+=======
+package.numDependencies=33
+>>>>>>> Stashed changes
 package.numTargets=16
 package.showExtends=true
 package.showUses=true
@@ -208,8 +219,13 @@ target15.x=700
 target15.y=630
 target16.editor.height=700
 target16.editor.width=900
+<<<<<<< Updated upstream
 target16.editor.x=40
 target16.editor.y=43
+=======
+target16.editor.x=0
+target16.editor.y=23
+>>>>>>> Stashed changes
 target16.height=50
 target16.name=FindReservationGUI
 target16.naviview.expanded=true
@@ -256,8 +272,8 @@ target4.showInterface=false
 target4.type=ClassTarget
 target4.typeParameters=
 target4.width=80
-target4.x=940
-target4.y=320
+target4.x=960
+target4.y=290
 target5.editor.height=754
 target5.editor.width=1274
 target5.editor.x=0

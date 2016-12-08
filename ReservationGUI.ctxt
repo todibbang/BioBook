@@ -11,6 +11,7 @@ comment2.params=
 comment2.target=void\ createLeftPanel()
 comment3.params=
 comment3.target=void\ drawDropDowns()
+<<<<<<< Updated upstream
 comment4.params=
 comment4.target=void\ displayShowing()
 comment5.params=
@@ -24,3 +25,19 @@ comment8.target=void\ createWantedSeatsDropDown(int,\ int)
 comment9.params=box
 comment9.target=void\ drawDropDown(javax.swing.JComboBox)
 numComments=12
+=======
+comment4.params=index
+comment4.target=void\ createMovieDropDown(int)
+comment5.params=movieId\ index
+comment5.target=void\ createMovieDateDropDown(int,\ int)
+comment6.params=movieId\ date\ index
+comment6.target=void\ createMovieTimeDropDown(int,\ java.lang.String,\ int)
+comment7.params=showingId\ index
+comment7.target=void\ createWantedSeatsDropDown(int,\ int)
+comment8.params=box
+comment8.target=void\ drawDropDown(javax.swing.JComboBox)
+comment9.params=lengthWanted\ showingId
+comment9.target=void\ drawRoomWithSeats(int,\ int)
+comment9.text=private\ void\ drawRoomWithSeats(int\ showingId)\ {\n\ \ \ \ \ \ \ \ ArrayList<Seat>\ seats\ \=\ MainController.getAllSeatsForShowing(showingId);\n
+numComments=11
+>>>>>>> Stashed changes

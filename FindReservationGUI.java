@@ -62,8 +62,8 @@ public class FindReservationGUI
 
         //ActionListener
         search.addActionListener(e -> {
-                infoModels = MainController.searchForInput(numberField.getText(), nameField.getText());
-                drawReservationGrid();
+                //infoModels = MainController.searchForInput(numberField.getText(), nameField.getText());
+                drawReservationGrid(numberField.getText(), nameField.getText());
         });
 
         JPanel panel = new JPanel();
@@ -73,7 +73,9 @@ public class FindReservationGUI
         return panel;
     }
 
-    private void drawReservationGrid() {
+    private void drawReservationGrid(String number, String name) {
+        infoModels = MainController.searchForInput(number, name);
+        
         Container AllInformationContainer = new Container();
         AllInformationContainer.setLayout(new GridLayout(10,1));
         AllInformationContainer.setSize(900, 1000);
@@ -141,16 +143,22 @@ public class FindReservationGUI
             valueGrid.add(amountOfSeatLabel);
             valueGrid.add(orderNrLabel);
 
-            JButton change = new JButton("Change");
+            JButton change = new JButton("Change order");
             JButton cancel = new JButton("Cancel order");
 
             infoGrid.add(cancel);
             valueGrid.add(change);
 
             change.addActionListener(e -> {
+                    
                     Frame.getInstance().setBookMovieView();
                 });
-            
+            cancel.addActionListener(e -> {
+                MainController.deleteReservation(im.getReservationId());
+                mainContainer.remove(AllInformationContainer);
+                drawReservationGrid(number, name);
+                
+            });
             // Draws line around each "ticket"
             p.add(infoGrid);
             p.add(valueGrid);
