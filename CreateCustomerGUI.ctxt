@@ -2,7 +2,11 @@
 comment0.params=
 comment0.target=CreateCustomerGUI()
 comment1.params=
-comment1.target=void\ drawCustomerFrame()
+comment1.target=javax.swing.JButton\ getConfirmButton()
 comment2.params=
-comment2.target=void\ confirmReservation()
-numComments=3
+comment2.target=javax.swing.JTextField\ getNameField()
+comment3.params=
+comment3.target=javax.swing.JTextField\ getNumberField()
+comment4.params=
+comment4.target=void\ drawCustomerFrame()
+numComments=5

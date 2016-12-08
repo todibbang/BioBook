@@ -5,9 +5,29 @@ import java.awt.event.*;
 public class CreateCustomerGUI extends JComponent
 {
     private JFrame frame;
+    private JButton confirmButton;
+    private JTextField nameField;
+    private JTextField numberField;
+    private CreateCustomerController ccc;
 
     public CreateCustomerGUI()
     {
+        ccc = new CreateCustomerController(this);
+    }
+    
+    public JButton getConfirmButton()
+    {
+        return confirmButton;
+    }
+    
+    public JTextField getNameField()
+    {
+        return nameField;
+    }
+    
+    public JTextField getNumberField()
+    {
+        return numberField;
     }
 
     public void drawCustomerFrame()
@@ -33,7 +53,7 @@ public class CreateCustomerGUI extends JComponent
         JLabel nameLabel = new JLabel ("Insert name");
         nameArea.add(nameLabel);
 
-        JTextField nameField = new JTextField("Name...");
+        nameField = new JTextField("Name...");
         nameArea.add(nameField);
 
         //Panel with number
@@ -43,14 +63,14 @@ public class CreateCustomerGUI extends JComponent
         JLabel numberLabel = new JLabel ("Insert number");
         numberArea.add(numberLabel);
 
-        JTextField numberField = new JTextField("Number..." );
+        numberField = new JTextField("Number..." );
         numberArea.add(numberField);
 
         //Panel with buttons
         JPanel buttonArea = new JPanel();
         buttonArea.setLayout(new FlowLayout());
 
-        JButton confirmButton = new JButton("Confirm");
+        confirmButton = new JButton("Confirm");
         buttonArea.add(confirmButton);
 
         JPanel thePanel = new JPanel();
@@ -64,13 +84,6 @@ public class CreateCustomerGUI extends JComponent
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        confirmButton.addActionListener(e -> {
-            CreateCustomerController.addInputForReservation(numberField.getText(), nameField.getText());
-    });
-    }
-
-    public void confirmReservation()
-    {
-
+        ccc.createActionListeners();
     }
 }
