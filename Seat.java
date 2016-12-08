@@ -118,28 +118,4 @@ public class Seat {
          System.out.println("\n'|' means the seat is reserved___':' means the seats is free and qualified for your requirements");
          // og ned hertil
     }
-    
-       /*
-    public static ArrayList<Seat> getAllReservedSeatsForShowing(int showingId){ 
-        ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showingReservations ON seats.seatId = showingReservations.seatId WHERE showingReservations.showingId = " + showingId + ""  + "");
-        //ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats INNER JOIN showingReservations ON seats.seatId = showingReservations.seatId WHERE showingReservations.showingId = "+ showingId);
-        ArrayList<Seat> seats = new ArrayList<Seat>();
-        for(ArrayList<String> s : seatString) {
-            //System.out.println(s.get(0) + ", " + s.get(1) + ", " + s.get(2) + ", " + s.get(3) + ", ");
-            seats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        System.out.println("number of seats: " + seats.size());
-        return seats;
-    }
-    
-    
-    public static ArrayList<Seat> getAllFreeSeatsForShowing(int showingId){ 
-        ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showings ON seats.roomId = showings.roomId WHERE showings.showingId = " + showingId + " AND seats.seatId NOT IN (SELECT seatId FROM showingReservations WHERE showingId = " + showingId + ")"+ "");
-        ArrayList<Seat> seats = new ArrayList<Seat>();
-        for(ArrayList<String> s : seatString) {
-            seats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        return seats;
-    }
-    */
 }

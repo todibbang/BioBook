@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=ccg
-comment0.target=CreateCustomerController(CreateCustomerGUI)
-comment1.params=number\ name
-comment1.target=void\ addInputForReservation(java.lang.String,\ java.lang.String)
-comment2.params=
-comment2.target=void\ createActionListeners()
-numComments=3

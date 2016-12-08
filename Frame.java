@@ -45,11 +45,11 @@ public class Frame extends JComponent{
     }
 
     private void setMovieListView() {
-        DisplayAllMoviesController.getInstance().drawGUI();
+        DisplayAllMoviesGUI.getInstance().setGUIVisible();
     }
 
     public void setBookMovieView() {
-        MovieInformationGUI.getInstance().setGUIVisible();
+        ReservationGUI.getInstance().setGUIVisible();
     }
 
     private void setManageReservationView() {

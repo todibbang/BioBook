@@ -64,7 +64,7 @@ public class FindReservationGUI
 
         //ActionListener
         search.addActionListener(e -> {
-                FindReservationController.searchForInput(numberField.getText(), nameField.getText());
+                searchForInput(numberField.getText(), nameField.getText());
             }
         );
 
@@ -128,5 +128,13 @@ public class FindReservationGUI
     {
         if(instance == null) {instance = new FindReservationGUI();}
         return instance;
+    }
+    
+    public static void searchForInput(String number, String name) {
+        Reservation r = Reservation.getReservation(number, name);
+        
+        System.out.println(r.getReservationId());
+        
+        Reservation.getUserReservation(r.getReservationId());
     }
 }

@@ -8,11 +8,9 @@ public class CreateCustomerGUI extends JComponent
     private JButton confirmButton;
     private JTextField nameField;
     private JTextField numberField;
-    private CreateCustomerController ccc;
 
     public CreateCustomerGUI()
     {
-        ccc = new CreateCustomerController(this);
     }
     
     public JButton getConfirmButton()
@@ -83,7 +81,10 @@ public class CreateCustomerGUI extends JComponent
         frame.add(thePanel);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        ccc.createActionListeners();
+        
+        confirmButton.addActionListener(e -> {
+                //CreateCustomerController.addInputForReservation(numberField.getText(), nameField.getText());
+        });
+        
     }
 }

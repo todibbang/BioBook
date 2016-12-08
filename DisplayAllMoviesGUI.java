@@ -13,7 +13,9 @@ public class DisplayAllMoviesGUI extends JComponent
     }
     
     
-    public void setGUIVisible(ArrayList<Movie> movies) {
+    public void setGUIVisible() {
+        ArrayList<Movie> movies = Movie.getAllMovies();
+        
         Container test = new Container();
         
         //test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
