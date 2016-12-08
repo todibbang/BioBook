@@ -19,8 +19,8 @@ public class DisplayAllMoviesGUI extends JComponent
         Container MainContainer = new Container();
         
         //test.setLayout(new BoxLayout(test, BoxLayout.Y_AXIS));
-        MainContainer.setLayout(new GridLayout(10,1));
-        MainContainer.setSize(900, 1000);
+        MainContainer.setLayout(new GridLayout(4,1));
+        MainContainer.setSize(900, 100);
         
         for(Movie m : movies) {
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(m.getImageSource()).getImage().getScaledInstance(450, 100, Image.SCALE_DEFAULT));
@@ -37,10 +37,10 @@ public class DisplayAllMoviesGUI extends JComponent
         Container borderLayout = new Container();
         borderLayout.setLayout(new BorderLayout());
         borderLayout.add(MainContainer);
-        borderLayout.setSize(900,1000);
+        borderLayout.setSize(900,100);
         
         JScrollPane scrollLayout = new JScrollPane(borderLayout, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollLayout.setSize(900, 1000);
+        scrollLayout.setSize(900, 100);
         
         Frame.getInstance().setMainContainer(scrollLayout);
     }

@@ -13,17 +13,20 @@ public class MainController{
                 
                 System.out.println("i = " + i + " " + infoString.get(i).get(0));
                 
-                if(i > 0 && info.get(info.size()-1).getReservationId() == Integer.parseInt(infoString.get(i).get(4))) {
-                    info.get(info.size()-1).addSeatId(Integer.parseInt(infoString.get(i).get(3)));
+                if(i > 0 && info.get(info.size()-1).getReservationId() == Integer.parseInt(infoString.get(i).get(8))) {
+                    info.get(info.size()-1).addSeatId(Integer.parseInt(infoString.get(i).get(7)));
                 } else {
-                    info.add(new InformationModel(infoString.get(i).get(0), infoString.get(i).get(1), infoString.get(i).get(2), Integer.parseInt(infoString.get(i).get(3)), Integer.parseInt(infoString.get(i).get(4))));
+                    info.add(new InformationModel(
+                    new Movie(Integer.parseInt(infoString.get(i).get(0)), infoString.get(i).get(1), Integer.parseInt(infoString.get(i).get(2)), infoString.get(i).get(3), infoString.get(i).get(4)), 
+                    infoString.get(i).get(5), infoString.get(i).get(6), Integer.parseInt(infoString.get(i).get(7)), 
+                    Integer.parseInt(infoString.get(i).get(8)), Integer.parseInt(infoString.get(i).get(9))));
                 } 
 
             }
         }
         
         for(InformationModel im : info) {
-            System.out.print(im.getTitle() + ": ");
+            System.out.print(im.getMovie().getTitle() + ": ");
             for(int i : im.getSeatIds()) {
                 System.out.print(i + ", ");
             }
@@ -122,7 +125,8 @@ public class MainController{
     }
     
     public static ArrayList<ArrayList<String>> getUserReservation(int reservationId) {
-        return MySQL.getInstance().executeQuery("SELECT movies.title, showings.date, showings.time, showingReservations.seatId, showingReservations.reservationId FROM reservations JOIN showingReservations ON reservations.reservationId = showingReservations.reservationId JOIN showings ON showingReservations.showingId = showings.showingId LEFT JOIN movies ON showings.movieId = movies.movieId WHERE showingReservations.reservationId = " + reservationId);
+        //int movieId, String title, int playtime, String imageSource, String description
+        return MySQL.getInstance().executeQuery("SELECT movies.movieId, movies.title, movies.playtime, movies.imageSource, movies.description, showings.date, showings.time, showingReservations.seatId, showingReservations.reservationId, showingReservations.showingId FROM reservations JOIN showingReservations ON reservations.reservationId = showingReservations.reservationId JOIN showings ON showingReservations.showingId = showings.showingId LEFT JOIN movies ON showings.movieId = movies.movieId WHERE showingReservations.reservationId = " + reservationId);
     }
     //Disse metoder over er fjernet fra reservation hertil ;-)!
     

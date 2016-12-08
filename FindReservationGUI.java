@@ -118,7 +118,7 @@ public class FindReservationGUI
             valueGrid.setLayout(new GridLayout());
 
             Box titleLabel = Box.createHorizontalBox();
-            titleLabel.add(new JLabel(im.getTitle(), JLabel.LEFT));
+            titleLabel.add(new JLabel(im.getMovie().getTitle(), JLabel.LEFT));
             titleLabel.add(Box.createGlue());
 
             Box clockLabel = Box.createHorizontalBox();
@@ -150,8 +150,8 @@ public class FindReservationGUI
             valueGrid.add(change);
 
             change.addActionListener(e -> {
-                    
-                    Frame.getInstance().setBookMovieView();
+                    ReservationGUI.getInstance().setGUIVisible(null, im);
+                    //Frame.getInstance().setBookMovieView();
                 });
             cancel.addActionListener(e -> {
                 MainController.deleteReservation(im.getReservationId());

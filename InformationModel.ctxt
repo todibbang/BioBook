@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.params=title\ date\ time\ seatId\ reservationId
-comment0.target=InformationModel(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int)
+comment0.params=m\ date\ time\ seatId\ reservationId\ showingId
+comment0.target=InformationModel(Movie,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int)
 comment1.params=
-comment1.target=java.lang.String\ getTitle()
+comment1.target=Movie\ getMovie()
 comment2.params=
 comment2.target=java.lang.String\ getDate()
 comment3.params=
@@ -11,6 +11,8 @@ comment4.params=
 comment4.target=java.util.ArrayList\ getSeatIds()
 comment5.params=
 comment5.target=int\ getReservationId()
-comment6.params=s
-comment6.target=void\ addSeatId(int)
-numComments=7
+comment6.params=
+comment6.target=int\ getShowingId()
+comment7.params=s
+comment7.target=void\ addSeatId(int)
+numComments=8
