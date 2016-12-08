@@ -5,8 +5,13 @@ import java.util.ArrayList;
 
 public class ReservationGUI
 {
+    Container mainContainer;
     public static ReservationGUI instance;
     private ArrayList<Movie> movies;
+    private ArrayList<Showing> showings;
+    Container topBar;
+    JComboBox dateBox;
+    JComboBox timeBox;
     
     private ReservationGUI()
     {
@@ -16,7 +21,7 @@ public class ReservationGUI
     public void setGUIVisible() {
         System.out.println("Drawing Reservation View");
         
-        Container mainContainer = new Container();
+        mainContainer = new Container();
         mainContainer.setLayout(new BorderLayout());
         
         
@@ -32,38 +37,85 @@ public class ReservationGUI
         }
         mainContainer.add( roomLayout, BorderLayout.CENTER);
         
-        Container topBar = new Container();
+        topBar = new Container();
         topBar.setLayout(new FlowLayout());
-        movies = Movie.getAllMovies();
-        String[] movieTitles = new String[movies.size()];
-        for(int i = 0; i < movies.size(); i++) {
-            movieTitles[i] = movies.get(i).getTitle();
-        }
         
-        topBar.add(getDropDown(movieTitles));
-        topBar.add(getDropDown(new String[]{"1","2","3","4","5","6","7","8"}));
-        topBar.add(getDropDown(new String[]{"1","2","3","4","5","6","7","8","9"}));
+        createMovieDrowDown();
+        
+        
+        //showings = Showing.getShowingFromMovieTitle(_id_)
+        //topBar.add(getDropDown(new String[]{"1","2","3","4","5","6","7","8"}));
+        
+        
+        //topBar.add(getDropDown(new String[]{"1","2","3","4","5","6","7","8","9"}));
         mainContainer.add( topBar, BorderLayout.NORTH);
         
         Frame.getInstance().setMainContainer(mainContainer);
     }
     
-    private Container getDropDown(String [] messageStrings) {
-        JComboBox cmbMessageList = new JComboBox(messageStrings);
-        JLabel lblText = new JLabel("Test");
-        cmbMessageList.setSelectedIndex(0);
-        cmbMessageList.addActionListener( e -> {
+    private void createMovieDrowDown() {
+        movies = Movie.getAllMovies();
+        String[] movieTitles = new String[movies.size()];
+        for(int i = 0; i < movies.size(); i++) {
+            movieTitles[i] = movies.get(i).getTitle();
+        }
+        JComboBox movieBox = new JComboBox(movieTitles);
+        movieBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
-            String msg = (String)thisBox.getSelectedItem();
-            System.out.println("HEYY: " + msg);
+            topBar.removeAll();
+            drawDropDown(movieBox);
+            createMovieDateDrowDown(movies.get(thisBox.getSelectedIndex()).getMovieId());
         });
+        drawDropDown(movieBox);
+        createMovieDateDrowDown(movies.get(0).getMovieId());
+    }
+    
+    private void createMovieDateDrowDown(int movieId) {
+        showings = Showing.getShowingFromMovieTitle(movieId);
+        if(showings == null || showings.size() == 0) return;
+        String[] showingDates = new String[showings.size()];
+        for(int i = 0; i < showings.size(); i++) {
+            showingDates[i] = showings.get(i).getDate();
+        }
+        dateBox = new JComboBox(showingDates);
+        dateBox.addActionListener( e -> {
+            JComboBox thisBox = (JComboBox)e.getSource();
+            createMovieTimeDrowDown(movieId, (String)thisBox.getSelectedItem());
+        });
+        drawDropDown(dateBox);
+        createMovieTimeDrowDown(movieId, showingDates[0]);
+    }
+    
+    private void createMovieTimeDrowDown(int movieId, String date) {
+        ArrayList<Showing> showingBeforeOrder = Showing.getShowingFromMovieTitle(movieId);
+        if(showingBeforeOrder == null || showingBeforeOrder.size() == 0) return;
+        showings = new ArrayList<Showing>();
+        for(Showing s : showingBeforeOrder) {
+            if(s.getDate().contains(date)) {
+                showings.add(s);
+            }
+        }
+        if(showings == null || showings.size() == 0) return;
+        
+        String[] showingTimes = new String[showings.size()];
+        for(int i = 0; i < showings.size(); i++) {
+            showingTimes[i] = showings.get(i).getTime();
+        }
+        dateBox = new JComboBox(showingTimes);
+        dateBox.addActionListener( e -> {
             
+        });
+        drawDropDown(dateBox);
+    }
+    
+    private void drawDropDown(JComboBox box) {
         Container c = new Container();
         c.setLayout(new BorderLayout());
-        c.add(cmbMessageList, BorderLayout.EAST);
-        c.add(lblText, BorderLayout.WEST);
-        return c;
+        c.add(box, BorderLayout.EAST);
+        topBar.add(c);
+        Frame.getInstance().setMainContainer(mainContainer);
     }
+    
     
     
     
