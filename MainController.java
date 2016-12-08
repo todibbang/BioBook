@@ -70,13 +70,11 @@ public class MainController{
     }
     
     public static void createNewReservation(String number, String name, int showingId, int[] seatIds) {
+        System.out.println("CREATING NEW RESERVATION. name: " + name + ", number: " + number + ", showingId: " + showingId);
+        
         MySQL.getInstance().executeCommand("INSERT INTO reservations (number, name) VALUES ('"+number +"','"+ name +"')");
         Reservation r = getReservation(number, name);
         addShowingReservation(showingId, r.getReservationId(), seatIds);
-    }
-    
-    public static int addReservation(String number, String name) {
-        return MySQL.getInstance().executeCommand("INSERT INTO reservations (number, name) VALUES ('"+number +"','"+ name +"')");
     }
     
     public static int addShowingReservation(int showingId, int reservationId, int[] seatIds) {
@@ -152,4 +150,5 @@ public class MainController{
         return showingReservations;
     }
     //Disse metoder over er fjernet fra showingReservation hertil ;-)!
+    
 }   

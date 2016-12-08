@@ -8,9 +8,16 @@ public class CreateCustomerGUI extends JComponent
     private JButton confirmButton;
     private JTextField nameField;
     private JTextField numberField;
-
-    public CreateCustomerGUI()
+    private int showingId;
+    private int [] seatIds;
+    
+    public CreateCustomerGUI(int showingId, int[] seatIds)
     {
+        System.out.println("Draw This Shit");
+        
+        drawCustomerFrame();
+        this.showingId = showingId;
+        this.seatIds = seatIds;
     }
     
     public JButton getConfirmButton()
@@ -32,7 +39,7 @@ public class CreateCustomerGUI extends JComponent
     {
         frame = new JFrame("Create customer");
 
-        frame.setSize(600, 400);
+        frame.setSize(600, 150);
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dim = tk.getScreenSize();
 
@@ -40,29 +47,20 @@ public class CreateCustomerGUI extends JComponent
         int xPos = (dim.width / 2) - (frame.getWidth() / 2);
         int yPos = (dim.height / 2) - (frame.getHeight() / 2);
         frame.setLocation(xPos, yPos);
+        
 
-        //Panel with name
-        JPanel nameArea = new JPanel();
-        nameArea.setLayout(new BoxLayout(nameArea, BoxLayout.Y_AXIS));
-
-        JLabel customerLabel = new JLabel ("Create customer");
-        nameArea.add(customerLabel);
+        //Panel CENTER
+        JPanel customerPanel = new JPanel();
+        customerPanel.setLayout(new GridLayout(2, 2));
 
         JLabel nameLabel = new JLabel ("Insert name");
-        nameArea.add(nameLabel);
-
-        nameField = new JTextField("Name...");
-        nameArea.add(nameField);
-
-        //Panel with number
-        JPanel numberArea = new JPanel();
-        numberArea.setLayout(new BoxLayout(numberArea, BoxLayout.Y_AXIS));
-
+        customerPanel.add(nameLabel);
+        nameField = new JTextField("Name...", 25);
+        customerPanel.add(nameField);
         JLabel numberLabel = new JLabel ("Insert number");
-        numberArea.add(numberLabel);
-
-        numberField = new JTextField("Number..." );
-        numberArea.add(numberField);
+        customerPanel.add(numberLabel);
+        numberField = new JTextField("Number...", 25);
+        customerPanel.add(numberField);
 
         //Panel with buttons
         JPanel buttonArea = new JPanel();
@@ -74,17 +72,21 @@ public class CreateCustomerGUI extends JComponent
         JPanel thePanel = new JPanel();
         thePanel.setLayout(new BorderLayout());
 
-        thePanel.add(nameArea, BorderLayout.NORTH);
-        thePanel.add(numberArea, BorderLayout.CENTER);
+        thePanel.add(customerPanel, BorderLayout.CENTER);
         thePanel.add(buttonArea, BorderLayout.SOUTH);
+        
 
         frame.add(thePanel);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         confirmButton.addActionListener(e -> {
-                //CreateCustomerController.addInputForReservation(numberField.getText(), nameField.getText());
+                if (nameField.getText() != null && nameField.getText() != "" && numberField.getText() != null && numberField.getText() != "") 
+                {
+                    MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
+                    frame.dispose();
+                }
         });
-        
     }
 }

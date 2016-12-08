@@ -9,7 +9,13 @@ public class ReservationGUI
     public static ReservationGUI instance;
     private ArrayList<Movie> movies;
     private ArrayList<Showing> showings;
+    
+    private ArrayList<Seat> wantedSeats;
+    
+    private int showingId;
+    
     Container topBar;
+    Container roomLayout;
     JComboBox dateBox;
     JComboBox timeBox;
     
@@ -21,21 +27,33 @@ public class ReservationGUI
     public void setGUIVisible() {
         System.out.println("Drawing Reservation View");
         
+        wantedSeats = new ArrayList<Seat>();
+        
         mainContainer = new Container();
         mainContainer.setLayout(new BorderLayout());
         
         
         
-        Container roomLayout = new Container();
-        roomLayout.setLayout(new GridLayout(10,10));
-        for(int row = 0; row < 10; row++) {
-            for(int col = 0; col < 10; col++) {
-                JButton b = new JButton(row+","+col);
-                b.setBackground(Color.getColor("Red"));
-                roomLayout.add(b);
-            }
-        }
-        mainContainer.add( roomLayout, BorderLayout.CENTER);
+        
+        JPanel reservePanel = new JPanel();
+        
+        reservePanel.setLayout(new FlowLayout());
+        
+        JButton reserveBtn = new JButton("Reserve seats");
+        reservePanel.add(reserveBtn);
+        
+        reserveBtn.addActionListener(e -> {
+                if (wantedSeats.size() > 0) {
+                    int [] wantedSeatIds = new int[wantedSeats.size()];
+                    for(int i = 0; i < wantedSeats.size(); i++) {
+                        wantedSeatIds[i] = wantedSeats.get(i).getSeatId();
+                    }
+                    
+                    new CreateCustomerGUI(this.showingId, wantedSeatIds);
+                }
+        });
+        
+        mainContainer.add(reservePanel, BorderLayout.SOUTH);
         
         topBar = new Container();
         topBar.setLayout(new FlowLayout());
@@ -53,6 +71,8 @@ public class ReservationGUI
         Frame.getInstance().setMainContainer(mainContainer);
     }
     
+    
+    
     private void createMovieDrowDown() {
         movies = MainController.getAllMovies();
         String[] movieTitles = new String[movies.size()];
@@ -64,29 +84,42 @@ public class ReservationGUI
             JComboBox thisBox = (JComboBox)e.getSource();
             topBar.removeAll();
             drawDropDown(movieBox);
-            createMovieDateDrowDown(movies.get(thisBox.getSelectedIndex()).getMovieId());
+            createMovieDateDropDown(movies.get(thisBox.getSelectedIndex()).getMovieId());
         });
         drawDropDown(movieBox);
-        createMovieDateDrowDown(movies.get(0).getMovieId());
+        createMovieDateDropDown(movies.get(0).getMovieId());
     }
     
-    private void createMovieDateDrowDown(int movieId) {
+    private void createMovieDateDropDown(int movieId) {
         showings = MainController.getShowingFromMovieTitle(movieId);
         if(showings == null || showings.size() == 0) return;
-        String[] showingDates = new String[showings.size()];
+        ArrayList<String> showingDates = new ArrayList<String>();
+        
         for(int i = 0; i < showings.size(); i++) {
-            showingDates[i] = showings.get(i).getDate();
+            Boolean duplicated = false;
+            for(String s : showingDates) {
+                if(s != null && s != "" && s.contains(showings.get(i).getDate())) {
+                    duplicated = true;
+                }
+            }
+            
+            if(!duplicated) {
+                showingDates.add(showings.get(i).getDate());
+            }
         }
-        dateBox = new JComboBox(showingDates);
+        
+        dateBox = new JComboBox(showingDates.toArray());
         dateBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
-            createMovieTimeDrowDown(movieId, (String)thisBox.getSelectedItem());
+            topBar.remove(2);
+            //drawDropDown(dateBox);
+            createMovieTimeDropDown(movieId, (String)thisBox.getSelectedItem());
         });
         drawDropDown(dateBox);
-        createMovieTimeDrowDown(movieId, showingDates[0]);
+        createMovieTimeDropDown(movieId, showingDates.get(0));
     }
     
-    private void createMovieTimeDrowDown(int movieId, String date) {
+    private void createMovieTimeDropDown(int movieId, String date) {
         ArrayList<Showing> showingBeforeOrder = MainController.getShowingFromMovieTitle(movieId);
         if(showingBeforeOrder == null || showingBeforeOrder.size() == 0) return;
         showings = new ArrayList<Showing>();
@@ -103,9 +136,12 @@ public class ReservationGUI
         }
         dateBox = new JComboBox(showingTimes);
         dateBox.addActionListener( e -> {
+            JComboBox box = (JComboBox)e.getSource();
             
+            drawRoomWithSeats(showings.get(box.getSelectedIndex()).getShowingId());
         });
         drawDropDown(dateBox);
+        drawRoomWithSeats(showings.get(0).getShowingId());
     }
     
     private void drawDropDown(JComboBox box) {
@@ -115,6 +151,64 @@ public class ReservationGUI
         topBar.add(c);
         Frame.getInstance().setMainContainer(mainContainer);
     }
+    
+    private void drawRoomWithSeats(int showingId) {
+        ArrayList<Seat> seats = MainController.getAllSeatsForShowing(showingId);
+        wantedSeats.clear();
+        this.showingId = showingId;
+        
+        try {
+            mainContainer.remove(roomLayout);
+        } catch(Exception ex) {}
+        
+        roomLayout = new Container();
+        roomLayout.setLayout(new GridLayout(10,10));
+        
+        for(Seat s : seats) {
+            JButton b = new JButton("R: " + s.getRow() + " | C: " + s.getCol());
+            b.setOpaque(true);
+            
+            boolean seatTaken = s.getSeatTaken();
+            boolean seatInSequence = s.getSeatInSequence();
+            
+            if (seatTaken) {
+                b.setBackground(Color.RED);
+                b.setForeground(Color.RED);
+            } else if(seatInSequence) {
+                b.setBackground(Color.YELLOW);
+                b.setForeground(Color.YELLOW);
+            }else {
+                b.setBackground(Color.GREEN);
+                b.setForeground(Color.GREEN);
+
+               b.addActionListener(e -> {
+                    if(wantedSeats.contains(s)) {
+                        wantedSeats.remove(s);
+                        b.setBackground(Color.GREEN);
+                        b.setForeground(Color.GREEN);
+                        Frame.getInstance().setMainContainer(mainContainer);
+                    } else {
+                        wantedSeats.add(s);
+                        b.setBackground(Color.BLUE);
+                        b.setForeground(Color.BLUE);
+                        Frame.getInstance().setMainContainer(mainContainer);
+                    }
+                    
+                });
+            }
+            roomLayout.add(b);
+        }
+          
+        
+        //roomLayout.add(b);
+        
+        mainContainer.add( roomLayout, BorderLayout.CENTER);
+        
+        Frame.getInstance().setMainContainer(mainContainer);
+    }
+    
+        
+        
     
     
     

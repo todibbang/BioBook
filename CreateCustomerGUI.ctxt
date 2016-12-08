@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=
-comment0.target=CreateCustomerGUI()
+comment0.params=showingId\ seatIds
+comment0.target=CreateCustomerGUI(int,\ int[])
 comment1.params=
 comment1.target=javax.swing.JButton\ getConfirmButton()
 comment2.params=
