@@ -3,6 +3,7 @@ comment0.params=number\ name
 comment0.target=java.util.ArrayList\ searchForInput(java.lang.String,\ java.lang.String)
 comment1.params=statement
 comment1.target=java.util.ArrayList\ getShowings(java.lang.String)
+<<<<<<< HEAD
 comment10.params=number\ name
 comment10.target=int\ addReservation(java.lang.String,\ java.lang.String)
 comment11.params=showingId\ reservationId\ seatIds
@@ -17,6 +18,20 @@ comment15.params=lengthRequired\ showing
 comment15.target=void\ findFreeSeats(int,\ int)
 comment16.params=
 comment16.target=java.util.ArrayList\ getAllShowingReservations()
+=======
+comment10.params=showingId\ reservationId\ seatIds
+comment10.target=int\ addShowingReservation(int,\ int,\ int[])
+comment11.params=number\ name
+comment11.target=Reservation\ getReservation(java.lang.String,\ java.lang.String)
+comment12.params=reservationId
+comment12.target=void\ getUserReservation(int)
+comment13.params=showingId
+comment13.target=java.util.ArrayList\ getAllSeatsForShowing(int)
+comment14.params=lengthRequired\ showing
+comment14.target=void\ findFreeSeats(int,\ int)
+comment15.params=
+comment15.target=java.util.ArrayList\ getAllShowingReservations()
+>>>>>>> origin/development
 comment2.params=
 comment2.target=java.util.ArrayList\ getAllShowings()
 comment3.params=id
@@ -33,4 +48,4 @@ comment8.params=reservationId
 comment8.target=void\ deleteReservation(int)
 comment9.params=number\ name\ showingId\ seatIds
 comment9.target=void\ createNewReservation(java.lang.String,\ java.lang.String,\ int,\ int[])
-numComments=17
+numComments=16
