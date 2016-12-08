@@ -34,13 +34,4 @@ public class Movie {
     public String getDescription() {
         return description;
     }
-    
-    public static ArrayList<Movie> getAllMovies(){ 
-        ArrayList<ArrayList<String>> movieString = MySQL.getInstance().executeQuery("SELECT * FROM movies");
-        ArrayList<Movie> movies = new ArrayList<Movie>();
-        for(ArrayList<String> m : movieString) {
-            movies.add(new Movie(Integer.parseInt(m.get(0)), m.get(1), Integer.parseInt(m.get(2)), m.get(3), m.get(4)));
-        }
-        return movies;
-    }
 }

@@ -61,10 +61,10 @@ public class FindReservationGUI
         JPanel detailsPanel = new JPanel();
         detailsPanel.setLayout(new BorderLayout());
         detailsPanel.add(singleLineFields, BorderLayout.NORTH);
-
+        
         //ActionListener
         search.addActionListener(e -> {
-                searchForInput(numberField.getText(), nameField.getText());
+                MainController.searchForInput(numberField.getText(), nameField.getText());
             }
         );
 
@@ -94,11 +94,11 @@ public class FindReservationGUI
         
         infoGrid.add(cancel);
         infoGrid.add(change);
-        
+        /*
         change.addActionListener(e -> {
                 Frame.getInstance().setBookMovieView();
             }
-        );
+        );*/
         
         //reservationContainer.add(infoGrid, BorderLayout.CENTER);
         
@@ -109,32 +109,10 @@ public class FindReservationGUI
         return panel;
         
     }
-
-    /*
-    public String getNameField() {
-    return nameField;
-    }
-
-    public String getPhoneField() {
-    return numberField;
-    }
-
-    public void addListenerToSearch(ActionListener listener)
-    {
-        search.addActionListener(listener);
-    }*/
-
+    
     public static FindReservationGUI getInstance()
     {
         if(instance == null) {instance = new FindReservationGUI();}
         return instance;
-    }
-    
-    public static void searchForInput(String number, String name) {
-        Reservation r = Reservation.getReservation(number, name);
-        
-        System.out.println(r.getReservationId());
-        
-        Reservation.getUserReservation(r.getReservationId());
     }
 }

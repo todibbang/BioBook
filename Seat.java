@@ -56,48 +56,7 @@ public class Seat {
         return seatInSequence;
     }
     
-    public static ArrayList<Seat> getAllSeatsForShowing(int showingId){ 
-        ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showings ON seats.roomId = showings.roomId WHERE showings.showingId = " + showingId + "");
-        ArrayList<Seat> seats = new ArrayList<Seat>();
-        for(ArrayList<String> s : seatString) {
-            seats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        
-        ArrayList<ArrayList<String>> takenSeatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showingReservations ON seats.seatId = showingReservations.seatId WHERE showingReservations.showingId = " + showingId + ""  + "");
-        ArrayList<Seat> takenSeats = new ArrayList<Seat>();
-        for(ArrayList<String> s : takenSeatString) {
-            takenSeats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        
-        for(Seat s : seats) {
-             for(Seat st : takenSeats) {
-                 if(s.getSeatId() == st.getSeatId()) {
-                     s.setSeatTaken(true);
-                 }
-             }
-         }
-        
-        return seats;
-    }
-
-    public static void findFreeSeats(int lengthRequired, int showing) {
-         ArrayList<Seat> seats = getAllSeatsForShowing(showing);
-         ArrayList<Seat> seatsNextToEachOther = new ArrayList<Seat>();
-         for(int i = 0 ; i <= seats.size(); i++) {
-             if(i == seats.size() || (i > 0 && !seats.get(i).getRow().contains(seats.get(i-1).getRow())) || seats.get(i).getSeatTaken())  {
-                 if(seatsNextToEachOther.size() >= lengthRequired) {
-                     for(Seat s : seatsNextToEachOther) {
-                         s.setSeatInSequence(true);
-                     }
-                 }
-                 seatsNextToEachOther = new ArrayList<Seat>();
-             }
-             if(i < seats.size())  {
-                 if(!seats.get(i).getSeatTaken()) {
-                     seatsNextToEachOther.add(seats.get(i));
-                 }
-             }
-         }
+    /*
          
          // dette skal slettes fra hertil
          String prevousRow = "";
@@ -116,6 +75,5 @@ public class Seat {
              
          }
          System.out.println("\n'|' means the seat is reserved___':' means the seats is free and qualified for your requirements");
-         // og ned hertil
+         // og ned hertil */
     }
-}

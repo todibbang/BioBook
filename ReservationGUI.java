@@ -54,7 +54,7 @@ public class ReservationGUI
     }
     
     private void createMovieDrowDown() {
-        movies = Movie.getAllMovies();
+        movies = MainController.getAllMovies();
         String[] movieTitles = new String[movies.size()];
         for(int i = 0; i < movies.size(); i++) {
             movieTitles[i] = movies.get(i).getTitle();
@@ -71,7 +71,7 @@ public class ReservationGUI
     }
     
     private void createMovieDateDrowDown(int movieId) {
-        showings = Showing.getShowingFromMovieTitle(movieId);
+        showings = MainController.getShowingFromMovieTitle(movieId);
         if(showings == null || showings.size() == 0) return;
         String[] showingDates = new String[showings.size()];
         for(int i = 0; i < showings.size(); i++) {
@@ -87,7 +87,7 @@ public class ReservationGUI
     }
     
     private void createMovieTimeDrowDown(int movieId, String date) {
-        ArrayList<Showing> showingBeforeOrder = Showing.getShowingFromMovieTitle(movieId);
+        ArrayList<Showing> showingBeforeOrder = MainController.getShowingFromMovieTitle(movieId);
         if(showingBeforeOrder == null || showingBeforeOrder.size() == 0) return;
         showings = new ArrayList<Showing>();
         for(Showing s : showingBeforeOrder) {
