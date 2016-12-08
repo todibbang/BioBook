@@ -70,8 +70,14 @@ public class Reservation{
         return reservation;
     }
     
+    public static void getUserReservation(int reservationId) {
+        ArrayList<ArrayList<String>> r = MySQL.getInstance().executeQuery("SELECT * FROM reservations JOIN showingReservations ON reservations.reservationId = showingReservations.reservationId JOIN showings ON showingReservations.showingId = showings.showingId LEFT JOIN movies ON showings.movieId = movies.movieId WHERE showingReservations.reservationId = " + reservationId);
+    }
+    
+    
+    
     public static void getReservationDetails(int reservationId){ 
-        ArrayList<ArrayList<String>> r = MySQL.getInstance().executeQuery("SELECT reservations.reservationId, name, showingReservations.showingId, seatId, movies.title FROM reservations LEFT JOIN showingReservations ON reservations.reservationId = showingReservations.reservationId JOIN showings ON showingReservations.showingId = showings.showingId JOIN movies ON showings.movieId = movies.movieId");// WHERE reservations.reservationId = " + reservationId );
+        ArrayList<ArrayList<String>> r = MySQL.getInstance().executeQuery("SELECT reservations.reservationId, name, showingReservations.showingId, seatId, movies.title FROM reservations LEFT JOIN showingReservations ON reservations.reservationId = showingReservations.reservationId JOIN showings ON showingReservations.showingId = showings.showingId");// JOIN movies ON showings.movieId = movies.movieId");// WHERE reservations.reservationId = " + reservationId );
         //Reservation reservation = new Reservation(Integer.parseInt(r.get(r.size()-1).get(0)), Integer.parseInt(r.get(r.size()-1).get(1)), r.get(r.size()-1).get(2));
         //return reservation;
     }

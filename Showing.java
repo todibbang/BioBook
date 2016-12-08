@@ -3,14 +3,14 @@ public class Showing{
     private int showingId;
     private String date;
     private String time;
-    private int salId;
+    private int roomId;
     private int movieId;
 
-    public Showing(int showingId, String date, String time, int salId, int movieId){
+    public Showing(int showingId, String date, String time, int roomId, int movieId){
         this.showingId = showingId;
         this.date = date;
         this.time = time;
-        this.salId = salId;
+        this.roomId = roomId;
         this.movieId = movieId;
     }
 
@@ -27,7 +27,7 @@ public class Showing{
     }
 
     public int getSalId() {
-        return salId;
+        return roomId;
     }
 
     public int getMovieId() {
@@ -37,17 +37,17 @@ public class Showing{
     //lav get methods til fields
     public static ArrayList<Showing> getAllShowings() 
     { 
-        return getShowings("SELECT * FROM showing ");
+        return getShowings("SELECT * FROM showings ");
     }
     
     public static ArrayList<Showing> getShowingFromMovieTitle(int id) 
     { 
-        return getShowings("SELECT * FROM showing WHERE movieId = " + id);
+        return getShowings("SELECT * FROM showings WHERE movieId = " + id);
     }
     
     public static ArrayList<Showing> getShowingFromDate(String d) 
     { 
-        return getShowings("SELECT * FROM showing WHERE date = " + d);
+        return getShowings("SELECT * FROM showings WHERE date = " + d);
     }
     
     private static ArrayList<Showing> getShowings(String statement) 

@@ -9,10 +9,14 @@ public class FindReservationController{
     
     public static void searchForInput(String number, String name) {
         Reservation r = Reservation.getReservation(number, name);
+        
+        System.out.println(r.getReservationId());
+        
+        Reservation.getUserReservation(r.getReservationId());
     }
     
     public void getInformation() {
-        r.getReservationDetails(r.getReservationId());
+        
     }
 }
     /*

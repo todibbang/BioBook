@@ -9,7 +9,7 @@ public class Demo
 {
     public Demo()
     {
-        MySQL dbh = MySQL.getInstance();
+        /*MySQL dbh = MySQL.getInstance();
         
         
         String s = "INSERT INTO seats (row, col, roomId) VALUES ";
@@ -34,7 +34,7 @@ public class Demo
         }
         s = s.substring(0, s.length() - 2);
         System.out.println(s);
-        dbh.executeCommand(s);
+        dbh.executeCommand(s);*/
     }
     
     public static void addMovies() { 
@@ -46,11 +46,11 @@ public class Demo
     public static void createReservation() {
         
         
-        Reservation.addReservation("31362328", "Tobias Bjerge Bang");
+        Reservation.addReservation("12345678", "Lil dick");
         
-        Reservation r = Reservation.getReservation("31362328", "Tobias Bjerge Bang");
+        Reservation r = Reservation.getReservation("12345678", "Lil dick");
         
-        Reservation.addShowingReservation(3, r.getReservationId(), new int [] {67,68,69});
+        Reservation.addShowingReservation(8, r.getReservationId(), new int [] {10,11,12});
         
         
         
