@@ -28,7 +28,7 @@ comment12.target=void\ getUserReservation(int)
 comment13.params=showingId
 comment13.target=java.util.ArrayList\ getAllSeatsForShowing(int)
 comment14.params=lengthRequired\ showing
-comment14.target=void\ findFreeSeats(int,\ int)
+comment14.target=java.util.ArrayList\ findFreeSeats(int,\ int)
 comment15.params=
 comment15.target=java.util.ArrayList\ getAllShowingReservations()
 >>>>>>> origin/development

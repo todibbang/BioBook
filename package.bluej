@@ -98,6 +98,7 @@ dependency8.type=UsesDependency
 dependency9.from=DisplayAllMoviesGUI
 dependency9.to=Movie
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 objectbench.height=100
 objectbench.width=955
 package.editor.height=559
@@ -105,7 +106,20 @@ package.editor.width=1152
 package.editor.x=2
 package.editor.y=113
 package.numDependencies=33
+<<<<<<< Updated upstream
 package.numTargets=16
+=======
+=======
+objectbench.height=76
+objectbench.width=1420
+package.editor.height=673
+package.editor.width=1312
+package.editor.x=0
+package.editor.y=23
+package.numDependencies=29
+>>>>>>> Stashed changes
+package.numTargets=15
+>>>>>>> Stashed changes
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8

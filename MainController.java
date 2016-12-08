@@ -151,7 +151,7 @@ public class MainController{
         return seats;
     }
 
-    public static void findFreeSeats(int lengthRequired, int showing) {
+    public static ArrayList<Seat> findFreeSeats(int lengthRequired, int showing) {
          ArrayList<Seat> seats = getAllSeatsForShowing(showing);
          ArrayList<Seat> seatsNextToEachOther = new ArrayList<Seat>();
          for(int i = 0 ; i <= seats.size(); i++) {
@@ -169,6 +169,7 @@ public class MainController{
                  }
              }
          }
+         return seats;
     }
     //Disse metoder over er fjernet fra seat hertil ;-)!
     
