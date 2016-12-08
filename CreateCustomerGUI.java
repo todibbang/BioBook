@@ -13,7 +13,10 @@ public class CreateCustomerGUI extends JComponent
     
     public CreateCustomerGUI(int showingId, int[] seatIds)
     {
-        System.out.println("Draw This Shit");
+        System.out.print("showingId: " + showingId);
+        for(int i : seatIds) {
+            System.out.print("seat: " + i);
+        }
         
         drawCustomerFrame();
         this.showingId = showingId;

@@ -49,7 +49,7 @@ public class Frame extends JComponent{
     }
 
     public void setBookMovieView() {
-        ReservationGUI.getInstance().setGUIVisible();
+        ReservationGUI.getInstance().setGUIVisible(null, null);
     }
 
     private void setManageReservationView() {
@@ -57,7 +57,7 @@ public class Frame extends JComponent{
     }
 
     public void setMainContainer(Container content) {
-        System.out.println("Numse");
+        //System.out.println("Numse");
 
         try {
             frameContainer.remove(1);

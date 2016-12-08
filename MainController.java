@@ -101,7 +101,7 @@ public class MainController{
         
         MySQL.getInstance().executeCommand("INSERT INTO reservations (number, name) VALUES ('"+number +"','"+ name +"')");
         ArrayList<Reservation> r = getReservations(number, name);
-        addShowingReservation(showingId, r.get(0).getReservationId(), seatIds);
+        addShowingReservation(showingId, r.get(r.size()-1).getReservationId(), seatIds);
     }
     
     public static int addShowingReservation(int showingId, int reservationId, int[] seatIds) {

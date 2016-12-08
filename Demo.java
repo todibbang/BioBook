@@ -82,7 +82,11 @@ public class Demo
         MySQL.getInstance().executeCommand(s);
     }
     
-    
+    public static void resetReservations()
+    {
+        MySQL.getInstance().executeCommand("TRUNCATE reservations");
+        MySQL.getInstance().executeCommand("TRUNCATE showingReservations");
+    }
     
     
     

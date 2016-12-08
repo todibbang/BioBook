@@ -22,9 +22,12 @@ public class DisplayAllMoviesGUI extends JComponent
         MainContainer.setLayout(new GridLayout(10,1));
         MainContainer.setSize(900, 1000);
         
-        for(int i = 0; i < movies.size(); i++) {
-            ImageIcon imageIcon = new ImageIcon(new ImageIcon(movies.get(i).getImageSource()).getImage().getScaledInstance(450, 100, Image.SCALE_DEFAULT));
-            JButton movieButton = new JButton(movies.get(i).getTitle(), imageIcon);
+        for(Movie m : movies) {
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(m.getImageSource()).getImage().getScaledInstance(450, 100, Image.SCALE_DEFAULT));
+            JButton movieButton = new JButton(m.getTitle(), imageIcon);
+            movieButton.addActionListener(e -> {
+                ReservationGUI.getInstance().setGUIVisible(m, null);
+            });
             movieButton.setVerticalTextPosition(SwingConstants.BOTTOM);
             movieButton.setHorizontalTextPosition(SwingConstants.CENTER);
             movieButton.setSize(900, 300);

@@ -36,7 +36,7 @@ public class MySQL
     // Execute query if you expect it to return something (SELECT)
     // Remember to call closeconnection when you are done using the ResultSet!
     public ArrayList<ArrayList<String>> executeQuery(String statement) {
-        System.out.println("[MySQL] " + statement); // For debug purposes.
+        //System.out.println("[MySQL] " + statement); // For debug purposes.
         ResultSet data = null;
         try {
             // Create connection...
