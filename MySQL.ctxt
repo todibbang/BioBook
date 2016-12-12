@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.params=
 comment0.target=MySQL()
-comment1.params=statement
-comment1.target=java.util.ArrayList\ executeQuery(java.lang.String)
+comment1.params=
+comment1.target=MySQL\ getInstance()
 comment2.params=statement
-comment2.target=int\ executeCommand(java.lang.String)
-comment3.params=
-comment3.target=boolean\ closeConnection()
+comment2.target=java.util.ArrayList\ executeQuery(java.lang.String)
+comment3.params=statement
+comment3.target=int\ executeCommand(java.lang.String)
 comment4.params=
-comment4.target=MySQL\ getInstance()
+comment4.target=boolean\ closeConnection()
 numComments=5

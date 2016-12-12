@@ -17,6 +17,7 @@ public class ReservationGUI extends JComponent
     private ArrayList<Showing> showings;
 
     private ArrayList<Seat> wantedSeats;
+    private ArrayList<Seat> seatsToBeChanged;
 
     private int showingId;
     Container topBar;
@@ -35,16 +36,17 @@ public class ReservationGUI extends JComponent
 
     }
     
-    public void setGUIVisible(Movie givenMovie, InformationModel im) {
+    public void setGUIVisible(ReservationInformation im) {
         movies = MainController.getAllMovies();
         viewedMovie = movies.get(0);
 
         wantedSeats = new ArrayList<Seat>();
+        seatsToBeChanged = new ArrayList<Seat>();
         mainContainer = new Container();
         mainContainer.setLayout(new BorderLayout());
         JPanel reservePanel = new JPanel();
-        reservePanel.setLayout(new FlowLayout());
-        
+        reservePanel.setLayout(new GridLayout(1,1));
+        reservePanel.setPreferredSize(new Dimension(100,40));
 
         mainContainer.add(reservePanel, BorderLayout.SOUTH);
         topBar = new Container();
@@ -56,34 +58,48 @@ public class ReservationGUI extends JComponent
         leftBar.setPreferredSize(new Dimension(200, 1000));
         mainContainer.add(leftBar, BorderLayout.WEST);
         
-        createMovieDropDown();
-        
-        if(givenMovie != null) {
-            viewedMovie = givenMovie;
-            displayShowing();
-        }
+        //createMovieDropDown();
         
         if(im != null) {
             viewedMovie = im.getMovie();
             currentTitle = im.getMovie().getTitle();
             currentDate = im.getDate();
             currentTime = im.getTime();
+            showingId = im.getShowingId();
+            
+            seatsToBeChanged = new ArrayList<Seat>();
+            for(int sId : im.getSeatIds()) {
+                seatsToBeChanged.add(new Seat(sId, "", 0, 0, 0));
+            }
             
             
             JButton reserveBtn = new JButton("Update Order");
             reservePanel.add(reserveBtn);
             reserveBtn.addActionListener(e -> {
                 int [] wantedSeatIds = new int[wantedSeats.size()];
+                seatsToBeChanged = new ArrayList<Seat>();
                 for(int i = 0; i < wantedSeats.size(); i++) {
                     wantedSeatIds[i] = wantedSeats.get(i).getSeatId();
+                    seatsToBeChanged.add(new Seat(wantedSeats.get(i).getSeatId(), "", 0, 0, 0));
                 }
                 MainController.modifyReservation(im.getReservationId(), im.getShowingId(), wantedSeatIds);
+                
+                //for(Seat sId : im.getSeatIds()) {
+                //    seatsToBeChanged.add(new Seat(sId, "", 0, 0, 0));
+                //}           
+                drawRoomWithSeats(currentWantedIndex, showingId);
+                //Frame.getInstance().setMainContainer(mainContainer);
             });
+            
+            createLeftPanel();
+            drawRoomWithSeats(currentWantedIndex, showingId);
             
         } else {
             JButton reserveBtn = new JButton("Reserve seats");
             reservePanel.add(reserveBtn);
             reserveBtn.addActionListener(e -> {
+                
+                
                 if (wantedSeats.size() > 0) {
                     int [] wantedSeatIds = new int[wantedSeats.size()];
                     for(int i = 0; i < wantedSeats.size(); i++) {
@@ -92,24 +108,34 @@ public class ReservationGUI extends JComponent
                     new CreateCustomerGUI(this.showingId, wantedSeatIds);
                 }
             });
+            redrawScreenItems();
         }
         
-        createLeftPanel();
-        drawDropDowns();
+        
         Frame.getInstance().setMainContainer(mainContainer);
-        
-        
     }
 
     private void createLeftPanel() {
-        leftBar.removeAll();
-
-        Container c = new Container();
+        try {
+            leftBar.removeAll(); 
+        } catch(Exception e) {}
+        
+        
+        JPanel c = new JPanel();
+        //c.setBorder(new EmptyBorder(10, 10, 10, 10));
         c.setLayout(new GridLayout(10,1));
-        c.setSize(200,400);
+        c.setSize(300,400);
+        
         c.add(new JLabel(viewedMovie.getTitle()));
-        c.add(new JLabel(viewedMovie.getDescription()));
-        c.add(new JLabel(viewedMovie.getPlaytime()+""));
+        JTextArea descriptionText = new JTextArea(viewedMovie.getDescription());
+        descriptionText.setLineWrap(true);
+        descriptionText.setWrapStyleWord(true);
+        descriptionText.setOpaque(true);
+        descriptionText.setEditable(false);
+        descriptionText.setBackground(null);
+        
+        c.add(descriptionText);
+        c.add(new JLabel(viewedMovie.getPlaytime()+" minutes"));
 
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(viewedMovie.getImageSource()).getImage().getScaledInstance(200, 100, Image.SCALE_DEFAULT));
         JLabel imageLbl = new JLabel(imageIcon);
@@ -135,14 +161,13 @@ public class ReservationGUI extends JComponent
         this.showingId = showings.get(currentTimeIndex).getShowingId();
         createWantedSeatsDropDown(showingId, currentWantedIndex);
         
-        
         drawRoomWithSeats(currentWantedIndex, showingId);
     }
 
-    
-    private void displayShowing() {
+    public void redrawScreenItems() {
         createLeftPanel();
         drawDropDowns();
+        Frame.getInstance().setMainContainer(mainContainer);
     }
     
     private void createMovieDropDown() {
@@ -160,6 +185,7 @@ public class ReservationGUI extends JComponent
         }
         
         movieBox.setSelectedIndex(index);
+        viewedMovie = movies.get(index);
         movieBox.addActionListener( e -> {
 
             JComboBox thisBox = (JComboBox)e.getSource();
@@ -169,6 +195,7 @@ public class ReservationGUI extends JComponent
             drawDropDowns();
             //createMovieDateDropDown(viewedMovie.getMovieId());
         });
+        
         drawDropDown(movieBox);
         //createMovieDateDropDown(movies.get(0).getMovieId());
     }
@@ -240,6 +267,8 @@ public class ReservationGUI extends JComponent
         }
         
         timeBox.setSelectedIndex(index);
+        currentTimeIndex = index;
+        
         timeBox.addActionListener( e -> {
 
             JComboBox thisBox = (JComboBox)e.getSource();
@@ -259,7 +288,7 @@ public class ReservationGUI extends JComponent
         seatBox.setSelectedIndex(index);
         seatBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
-            wantedSeats.clear();
+            //wantedSeats.clear();
             currentWantedIndex = thisBox.getSelectedIndex();
             drawDropDowns();
             //drawRoomWithSeats(seatDropDown, showingId);
@@ -279,6 +308,20 @@ public class ReservationGUI extends JComponent
     private void drawRoomWithSeats(int lW, int showingId) {
         ArrayList<Seat> seats = MainController.findFreeSeats(lW, showingId);
         wantedSeats.clear();
+        
+        if(seatsToBeChanged != null) {
+            for(Seat s : seats) {
+                for(Seat stbc : seatsToBeChanged) {
+                    if(s.getSeatId() == stbc.getSeatId()) {
+                        stbc = s;
+                        stbc.setSeatTaken(false);
+                        stbc.setSeatInSequence(true);
+                        wantedSeats.add(stbc);
+                    }
+                }
+            }
+        }
+        
 
         try {
             mainContainer.remove(roomLayout);
@@ -291,24 +334,34 @@ public class ReservationGUI extends JComponent
             JButton b = new JButton(s.getRow() + "" + s.getCol());
             b.setOpaque(true);
             b.setBorder(null);
+            
+            
 
-            boolean seatTaken = s.getSeatTaken();
-            boolean seatInSequence = s.getSeatInSequence();
-
-            if (seatTaken) {
-
+            if(s.getSeatTaken()) 
+            {
                 b.setBackground(Color.RED);
-                //b.setForeground(Color.RED);
-            } else if(!seatInSequence) {
+            } 
+            else if(!s.getSeatInSequence()) 
+            {
                 b.setBackground(Color.YELLOW);
-                //b.setForeground(Color.YELLOW);
-            }else {
-                b.setBackground(Color.WHITE);
-                //b.setForeground(Color.GREEN);
+            }
 
+            else {
+                
+                if (wantedSeats.contains(s)) 
+                {
+                    b.setBackground(Color.GREEN);
+                    b.setForeground(Color.RED);
+                }  else {
+                    b.setBackground(Color.WHITE);
+                }
                 b.addActionListener(e -> {
                         if(wantedSeats.contains(s)) {
+                            
+                            System.out.println("HALLOOOOOO ");
+                            
                             wantedSeats.remove(s);
+                            
                             b.setBackground(Color.WHITE);
                             //b.setForeground(Color.GREEN);
                             Frame.getInstance().setMainContainer(mainContainer);
@@ -327,10 +380,12 @@ public class ReservationGUI extends JComponent
         mainContainer.add( roomLayout, BorderLayout.CENTER);
         Frame.getInstance().setMainContainer(mainContainer);
     }
-
+    
     public static ReservationGUI getInstance()
     {
+        //return new ReservationGUI();
         if(instance == null) {instance = new ReservationGUI();}
-        return instance;
+        return instance; 
     }
+    
 }

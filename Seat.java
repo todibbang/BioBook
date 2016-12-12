@@ -31,14 +31,14 @@ public class Seat {
     public int getCol() {
         return col;
     }
-    
+    /*
     public int getRoomId() {
         return roomId;
-    }
-    
+    } */
+    /* 
     public int getReservationId() {
         return reservationId;
-    }
+    } */
     
     public void setSeatTaken(boolean t) {
         seatTaken = t;

@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.params=
 comment0.target=ReservationGUI()
-comment1.params=givenMovie\ im
-comment1.target=void\ setGUIVisible(Movie,\ InformationModel)
+comment1.params=im
+comment1.target=void\ setGUIVisible(ReservationInformation)
 comment10.params=lW\ showingId
 comment10.target=void\ drawRoomWithSeats(int,\ int)
 comment11.params=
@@ -12,7 +12,7 @@ comment2.target=void\ createLeftPanel()
 comment3.params=
 comment3.target=void\ drawDropDowns()
 comment4.params=
-comment4.target=void\ displayShowing()
+comment4.target=void\ redrawScreenItems()
 comment5.params=
 comment5.target=void\ createMovieDropDown()
 comment6.params=movieId

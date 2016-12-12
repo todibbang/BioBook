@@ -6,12 +6,12 @@ import java.util.ArrayList;
 public class FindReservationGUI
 {
     public static FindReservationGUI instance;
-    private ArrayList<InformationModel> infoModels;
+    private ArrayList<ReservationInformation> infoModels;
     private Container mainContainer;
     
     private FindReservationGUI()
     {
-        infoModels = new ArrayList<InformationModel>();
+        infoModels = new ArrayList<ReservationInformation>();
     }
 
     public void setGUIVisible() {
@@ -77,11 +77,11 @@ public class FindReservationGUI
         infoModels = MainController.searchForInput(number, name);
         
         Container AllInformationContainer = new Container();
-        AllInformationContainer.setLayout(new GridLayout(10,1));
+        AllInformationContainer.setLayout(new GridLayout(12,1));
         AllInformationContainer.setSize(900, 1000);
 
         System.out.println("infoModels.size(): " + infoModels.size());
-        for(InformationModel im : infoModels) {
+        for(ReservationInformation im : infoModels) {
             JPanel p = new JPanel();
             p.setLayout(new GridLayout(2,2));
             
@@ -150,7 +150,7 @@ public class FindReservationGUI
             valueGrid.add(change);
 
             change.addActionListener(e -> {
-                    ReservationGUI.getInstance().setGUIVisible(null, im);
+                    ReservationGUI.getInstance().setGUIVisible(im);
                     //Frame.getInstance().setBookMovieView();
                 });
             cancel.addActionListener(e -> {

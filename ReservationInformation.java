@@ -1,5 +1,5 @@
 import java.util.*;
-public class InformationModel {
+public class ReservationInformation {
 
     private String date;
     private String time;
@@ -8,7 +8,7 @@ public class InformationModel {
     private int showingId;
     private Movie movie;
 
-    public InformationModel(Movie m, String date, String time, int seatId, int reservationId, int showingId) {
+    public ReservationInformation(Movie m, String date, String time, int seatId, int reservationId, int showingId) {
         movie = m;
         this.date = date;
         this.time = time;

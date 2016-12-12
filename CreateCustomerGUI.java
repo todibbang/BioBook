@@ -84,12 +84,42 @@ public class CreateCustomerGUI extends JComponent
         
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        confirmButton.addActionListener(e -> {
-                if (nameField.getText() != null && nameField.getText() != "" && numberField.getText() != null && numberField.getText() != "") 
-                {
+        confirmButton.addActionListener(
+        e -> {
+            if (nameField.getText() != null && nameField.getText() != "" && numberField.getText() != null && numberField.getText() != "") 
+            {
+                try {
+                    processUserInput(numberField.getText(), nameField.getText());
+                    System.out.println("Did we get this far ??");
                     MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
+                    ReservationGUI.getInstance().redrawScreenItems();
                     frame.dispose();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    new ErrorGUI(ex.getMessage());
                 }
+            }
         });
     }
+    
+    public void processUserInput(String number, String name) throws Exception {
+        if(number == null || number == "") {
+            throw new Exception("You must provide a phone number to add reservation!");
+        } else {
+            try {
+                int value = Integer.parseInt(number);
+                
+                System.out.println(value);
+            } catch(Exception ex) {
+                throw new Exception("Phone number is not valid!");
+            }
+        }
+        if(name == null || name == "") {
+            throw new Exception("You must provide a phone number to add reservation!");
+        }
+        
+        
+    }
+    
+    
 }

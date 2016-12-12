@@ -32,6 +32,12 @@ public class MySQL
             System.out.println("Failed to register com.mysql.jdbc.Driver");
         }
     }
+    
+    public static MySQL getInstance()
+    {
+        if(instance == null) {instance = new MySQL();}
+        return instance;
+    }
 
     // Execute query if you expect it to return something (SELECT)
     // Remember to call closeconnection when you are done using the ResultSet!
@@ -51,33 +57,28 @@ public class MySQL
             ArrayList<ArrayList<String>> resultStrings = new ArrayList<ArrayList<String>>();
         
             String columns [];
-            try {
-                ResultSetMetaData rsmd = data.getMetaData();
-                columns = new String [rsmd.getColumnCount()];
-                
-                for(int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    columns[i-1] = rsmd.getColumnName(i);
-                    
-                    System.out.print(rsmd.getColumnName(i) + ", ");
-                } 
-                System.out.println("");
-                while (data.next()) {
-                    ArrayList<String> thisRs = new ArrayList<String>();
-                    for(int i = 0; i < columns.length; i++) {
-                        thisRs.add(data.getString(columns[i]));
-                        System.out.print(data.getString(columns[i]) + ", ");
-                    }
-                    resultStrings.add(thisRs);
-                    System.out.println("");
+            ResultSetMetaData rsmd = data.getMetaData();
+            columns = new String [rsmd.getColumnCount()];
+            
+            for(int i = 1; i <= rsmd.getColumnCount(); i++) {
+                columns[i-1] = rsmd.getColumnName(i);
+            } 
+            while (data.next()) {
+                ArrayList<String> thisRs = new ArrayList<String>();
+                for(int i = 0; i < columns.length; i++) {
+                    thisRs.add(data.getString(columns[i]));
                 }
-            } catch (SQLException se) {
-                System.out.println(se.getMessage());
+                resultStrings.add(thisRs);
             }
+            
             return resultStrings;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             System.out.println("Now is a good time to panic!");
+            new ErrorGUI(e.getMessage());
+        } finally {
+            //closeConnection();
         }
         return null;
     }
@@ -101,8 +102,9 @@ public class MySQL
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
+            new ErrorGUI(e.getMessage());
         } finally {
-            closeConnection();
+            //closeConnection();
         }
         // Return -1 if no id just added. Consider replacing with exception.
         return -1;
@@ -114,6 +116,7 @@ public class MySQL
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            new ErrorGUI(e.getMessage());
             return false;
         }
         return true;
@@ -122,9 +125,5 @@ public class MySQL
     // Singleton pattern.
     // MySQL sql = new MySQL() <-- Will not work!
     // MySQL sql = sql.getInstance() <- Correct!
-    public static MySQL getInstance()
-    {
-        if(instance == null) {instance = new MySQL();}
-        return instance;
-    }
+    
 }

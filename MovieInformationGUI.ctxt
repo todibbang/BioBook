@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.params=
-comment0.target=MovieInformationGUI()
-comment1.params=
-comment1.target=void\ setGUIVisible()
-comment2.params=
-comment2.target=MovieInformationGUI\ getInstance()
-numComments=3
