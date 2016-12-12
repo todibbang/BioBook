@@ -79,7 +79,7 @@ public class CreateCustomerGUI extends JComponent
         thePanel.add(buttonArea, BorderLayout.SOUTH);
         
 
-        frame.add(thePanel);
+        frame.add(thePanel); 
         frame.setVisible(true);
         
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,11 +92,11 @@ public class CreateCustomerGUI extends JComponent
                     processUserInput(numberField.getText(), nameField.getText());
                     System.out.println("Did we get this far ??");
                     MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
-                    ReservationGUI.getInstance().redrawScreenItems();
+                    MainController.displayReservationGUI(null);
+                    
                     frame.dispose();
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    new ErrorGUI(ex.getMessage());
+                    MainController.displayErrorGUI(ex.getMessage());
                 }
             }
         });

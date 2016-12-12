@@ -23,7 +23,7 @@ public class FindReservationGUI
         //searchContainer.add(
 
         mainContainer.add(searchFields(), BorderLayout.NORTH);
-        Frame.getInstance().setMainContainer(mainContainer);
+        MainController.redrawFrame(mainContainer); 
     }
 
     private Container searchFields(){
@@ -150,8 +150,8 @@ public class FindReservationGUI
             valueGrid.add(change);
 
             change.addActionListener(e -> {
-                    ReservationGUI.getInstance().setGUIVisible(im);
-                    //Frame.getInstance().setBookMovieView();
+                    MainController.displayReservationGUI(im);
+                    
                 });
             cancel.addActionListener(e -> {
                 MainController.deleteReservation(im.getReservationId());
@@ -159,7 +159,7 @@ public class FindReservationGUI
                 drawReservationGrid(number, name);
                 
             });
-            // Draws line around each "ticket"
+            // Draws line around each "ticket" 
             p.add(infoGrid);
             p.add(valueGrid);
             p.setBorder(BorderFactory.createEmptyBorder());
@@ -168,7 +168,7 @@ public class FindReservationGUI
             
         }
         mainContainer.add(AllInformationContainer, BorderLayout.CENTER);
-        Frame.getInstance().setMainContainer(mainContainer);
+        MainController.redrawFrame(mainContainer);
     }
 
     public static FindReservationGUI getInstance()

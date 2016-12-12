@@ -58,20 +58,16 @@ public class ReservationGUI extends JComponent
         leftBar.setPreferredSize(new Dimension(200, 1000));
         mainContainer.add(leftBar, BorderLayout.WEST);
         
-        //createMovieDropDown();
-        
         if(im != null) {
             viewedMovie = im.getMovie();
             currentTitle = im.getMovie().getTitle();
             currentDate = im.getDate();
             currentTime = im.getTime();
             showingId = im.getShowingId();
-            
             seatsToBeChanged = new ArrayList<Seat>();
             for(int sId : im.getSeatIds()) {
                 seatsToBeChanged.add(new Seat(sId, "", 0, 0, 0));
             }
-            
             
             JButton reserveBtn = new JButton("Update Order");
             reservePanel.add(reserveBtn);
@@ -83,36 +79,26 @@ public class ReservationGUI extends JComponent
                     seatsToBeChanged.add(new Seat(wantedSeats.get(i).getSeatId(), "", 0, 0, 0));
                 }
                 MainController.modifyReservation(im.getReservationId(), im.getShowingId(), wantedSeatIds);
-                
-                //for(Seat sId : im.getSeatIds()) {
-                //    seatsToBeChanged.add(new Seat(sId, "", 0, 0, 0));
-                //}           
                 drawRoomWithSeats(currentWantedIndex, showingId);
-                //Frame.getInstance().setMainContainer(mainContainer);
             });
             
             createLeftPanel();
             drawRoomWithSeats(currentWantedIndex, showingId);
-            
         } else {
             JButton reserveBtn = new JButton("Reserve seats");
             reservePanel.add(reserveBtn);
             reserveBtn.addActionListener(e -> {
-                
-                
                 if (wantedSeats.size() > 0) {
                     int [] wantedSeatIds = new int[wantedSeats.size()];
                     for(int i = 0; i < wantedSeats.size(); i++) {
                         wantedSeatIds[i] = wantedSeats.get(i).getSeatId();
                     }
-                    new CreateCustomerGUI(this.showingId, wantedSeatIds);
+                    MainController.displayCreateCustomerGUI(this.showingId, wantedSeatIds);
                 }
             });
             redrawScreenItems();
         }
-        
-        
-        Frame.getInstance().setMainContainer(mainContainer);
+        MainController.redrawFrame(mainContainer);
     }
 
     private void createLeftPanel() {
@@ -120,9 +106,7 @@ public class ReservationGUI extends JComponent
             leftBar.removeAll(); 
         } catch(Exception e) {}
         
-        
         JPanel c = new JPanel();
-        //c.setBorder(new EmptyBorder(10, 10, 10, 10));
         c.setLayout(new GridLayout(10,1));
         c.setSize(300,400);
         
@@ -146,13 +130,12 @@ public class ReservationGUI extends JComponent
 
         border.add(c, BorderLayout.SOUTH);
         border.add(imageLbl, BorderLayout.NORTH);
-
         
         leftBar.add(border);
-        Frame.getInstance().setMainContainer(mainContainer);
+        MainController.redrawFrame(mainContainer);
     }
 
-    private void drawDropDowns() {
+    private void drawDropDowns() { 
         topBar.removeAll();
         
         createMovieDropDown();
@@ -162,12 +145,12 @@ public class ReservationGUI extends JComponent
         createWantedSeatsDropDown(showingId, currentWantedIndex);
         
         drawRoomWithSeats(currentWantedIndex, showingId);
+        MainController.redrawFrame(mainContainer);
     }
 
     public void redrawScreenItems() {
         createLeftPanel();
         drawDropDowns();
-        Frame.getInstance().setMainContainer(mainContainer);
     }
     
     private void createMovieDropDown() {
@@ -193,11 +176,8 @@ public class ReservationGUI extends JComponent
             viewedMovie = movies.get(thisBox.getSelectedIndex());
             createLeftPanel();
             drawDropDowns();
-            //createMovieDateDropDown(viewedMovie.getMovieId());
         });
-        
         drawDropDown(movieBox);
-        //createMovieDateDropDown(movies.get(0).getMovieId());
     }
     
     private void createMovieDateDropDown(int movieId) {
@@ -217,7 +197,6 @@ public class ReservationGUI extends JComponent
                 showingDates.add(showings.get(i).getDate());
             }
         }
-
         
         int index = 0;
         for(int i = 0; i < showingDates.size(); i++) {
@@ -231,14 +210,10 @@ public class ReservationGUI extends JComponent
         dateBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
             currentDate = showingDates.get(thisBox.getSelectedIndex());
-            
-            System.out.println("currentDate: " + currentDate);
             drawDropDowns();
         });
         drawDropDown(dateBox);
-
     }
-
     
     private void createMovieTimeDropDown(int movieId) {
         ArrayList<Showing> showingBeforeOrder = MainController.getShowingFromMovieTitle(movieId);
@@ -268,14 +243,12 @@ public class ReservationGUI extends JComponent
         
         timeBox.setSelectedIndex(index);
         currentTimeIndex = index;
-        
         timeBox.addActionListener( e -> {
 
             JComboBox thisBox = (JComboBox)e.getSource();
             currentTimeIndex = thisBox.getSelectedIndex();
             currentTime = (String) thisBox.getSelectedItem();
             drawDropDowns();
-            //drawRoomWithSeats(0, showingId);
         });
 
         drawDropDown(timeBox);
@@ -288,12 +261,9 @@ public class ReservationGUI extends JComponent
         seatBox.setSelectedIndex(index);
         seatBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
-            //wantedSeats.clear();
             currentWantedIndex = thisBox.getSelectedIndex();
             drawDropDowns();
-            //drawRoomWithSeats(seatDropDown, showingId);
         });
-                
         drawDropDown(seatBox);
     }
 
@@ -302,7 +272,7 @@ public class ReservationGUI extends JComponent
         c.setLayout(new BorderLayout());
         c.add(box, BorderLayout.EAST);
         topBar.add(c);
-        Frame.getInstance().setMainContainer(mainContainer);
+        MainController.redrawFrame(mainContainer);
     }
     
     private void drawRoomWithSeats(int lW, int showingId) {
@@ -321,7 +291,6 @@ public class ReservationGUI extends JComponent
                 }
             }
         }
-        
 
         try {
             mainContainer.remove(roomLayout);
@@ -335,8 +304,6 @@ public class ReservationGUI extends JComponent
             b.setOpaque(true);
             b.setBorder(null);
             
-            
-
             if(s.getSeatTaken()) 
             {
                 b.setBackground(Color.RED);
@@ -345,7 +312,6 @@ public class ReservationGUI extends JComponent
             {
                 b.setBackground(Color.YELLOW);
             }
-
             else {
                 
                 if (wantedSeats.contains(s)) 
@@ -355,35 +321,27 @@ public class ReservationGUI extends JComponent
                 }  else {
                     b.setBackground(Color.WHITE);
                 }
-                b.addActionListener(e -> {
+                b.addActionListener(e -> { 
                         if(wantedSeats.contains(s)) {
-                            
-                            System.out.println("HALLOOOOOO ");
-                            
                             wantedSeats.remove(s);
-                            
                             b.setBackground(Color.WHITE);
-                            //b.setForeground(Color.GREEN);
-                            Frame.getInstance().setMainContainer(mainContainer);
+                            MainController.redrawFrame(mainContainer);
                         } else {
                             wantedSeats.add(s);
                             b.setBackground(Color.GREEN);
-                            //b.setForeground(Color.BLUE);
-                            Frame.getInstance().setMainContainer(mainContainer);
+                            MainController.redrawFrame(mainContainer);
                         }
-
                     });
             }
             roomLayout.add(b);
         }
 
         mainContainer.add( roomLayout, BorderLayout.CENTER);
-        Frame.getInstance().setMainContainer(mainContainer);
+        //MainController.redrawFrame(mainContainer);
     }
     
     public static ReservationGUI getInstance()
     {
-        //return new ReservationGUI();
         if(instance == null) {instance = new ReservationGUI();}
         return instance; 
     }

@@ -6,7 +6,7 @@ public class ReservationInformation {
     private ArrayList<Integer> seatIds;
     private int reservationId;
     private int showingId;
-    private Movie movie;
+    private Movie movie; 
 
     public ReservationInformation(Movie m, String date, String time, int seatId, int reservationId, int showingId) {
         movie = m;

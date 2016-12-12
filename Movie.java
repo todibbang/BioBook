@@ -5,7 +5,7 @@ public class Movie {
     private String title;
     private int playtime;
     private String imageSource;
-    private String description;
+    private String description; 
     
     public Movie(int movieId, String title, int playtime, String imageSource, String description){
         this.movieId = movieId;

@@ -10,7 +10,7 @@ public class Seat {
     
     
     private boolean seatTaken;
-    private boolean seatInSequence;
+    private boolean seatInSequence; 
     
     public Seat(int seatId, String row, int col, int roomId, int reservationId) {
         this.seatId = seatId;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.awt.*;
 
 public class MainController{
     
@@ -125,5 +126,29 @@ public class MainController{
          }
          MySQL.getInstance().closeConnection();
          return seats;
+    }
+    
+    public static void displayErrorGUI(String message) {
+        new ErrorGUI(message);
+    }
+    
+    public static void displayCreateCustomerGUI(int showingId, int[] seatIds) {
+        new CreateCustomerGUI(showingId, seatIds);
+    }
+    
+    public static void displayReservationGUI(ReservationInformation ri) {
+        ReservationGUI.getInstance().setGUIVisible(ri);
+    }
+    
+    public static void updateReservationGUI() {
+        ReservationGUI.getInstance().redrawScreenItems();
+    }
+
+    public static void displayFindReservationGUI() {
+        FindReservationGUI.getInstance().setGUIVisible();
+    }
+    
+    public static void redrawFrame(Container content) {
+        Frame.getInstance().setMainContainer(content);
     }
 }   

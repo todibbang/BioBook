@@ -18,7 +18,7 @@ public class Showing{
         return showingId;
     }
 
-    public String getDate() {
+    public String getDate() { 
         return date;
     }
 

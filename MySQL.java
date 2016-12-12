@@ -76,7 +76,7 @@ public class MySQL
             System.out.println(e.getMessage());
             e.printStackTrace();
             System.out.println("Now is a good time to panic!");
-            new ErrorGUI(e.getMessage());
+            MainController.displayErrorGUI(e.getMessage());
         } finally {
             //closeConnection();
         }
@@ -102,13 +102,13 @@ public class MySQL
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-            new ErrorGUI(e.getMessage());
+            MainController.displayErrorGUI(e.getMessage());
         } finally {
             //closeConnection();
         }
         // Return -1 if no id just added. Consider replacing with exception.
         return -1;
-    }
+    } 
 
     // Close the connection, if possible - and return weather or not it was closed correctly.
     public boolean closeConnection() {
@@ -116,7 +116,7 @@ public class MySQL
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            new ErrorGUI(e.getMessage());
+            MainController.displayErrorGUI(e.getMessage());
             return false;
         }
         return true;
