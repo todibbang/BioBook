@@ -51,10 +51,6 @@ public class Frame extends JComponent{
         frame.setVisible(true);
     }
     
-    public static void main(String[] args) {
-        
-        MainController.displayReservationGUI(null);
-    }
     public static Frame getInstance()
     {
         if(instance == null) {instance = new Frame();}

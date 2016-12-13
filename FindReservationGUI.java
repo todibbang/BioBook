@@ -77,7 +77,7 @@ public class FindReservationGUI
     }
 
     private void drawReservationGrid(String number, String name) {
-        infoModels = MainController.searchForInput(number, name);
+        infoModels = MainController.getReservationInformation(number, name);
         
         Container AllInformationContainer = new Container();
         AllInformationContainer.setLayout(new GridLayout(12,1));
