@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class MainController{
     
-    public static ArrayList<ReservationInformation> searchForInput(String number, String name) {
+    public static ArrayList<ReservationInformation> searchForInput(String number, String name) throws NumberFormatException{
         ArrayList<ArrayList<String>> result = MySQL.getInstance().executeQuery("SELECT reservationId FROM reservations WHERE number='"+number+"' OR " + "name='" + name+"'");
         ArrayList<ReservationInformation> info = new ArrayList<ReservationInformation>();
         for(ArrayList<String> r : result) {
@@ -30,7 +30,7 @@ public class MainController{
         return info;
     }
     
-    public static ArrayList<Showing> getShowingFromMovieTitle(int id) //Taget fra Showings
+    public static ArrayList<Showing> getShowingFromMovieTitle(int id) throws NumberFormatException//Taget fra Showings
     { 
         ArrayList<ArrayList<String>> showingString = MySQL.getInstance().executeQuery("SELECT * FROM showings WHERE movieId = " + id);
         ArrayList<Showing> showings = new ArrayList<Showing>();

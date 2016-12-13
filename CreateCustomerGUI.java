@@ -10,29 +10,31 @@ public class CreateCustomerGUI extends JComponent
     private JTextField numberField;
     private int showingId;
     private int [] seatIds;
-    
+    String regex = "\\d+";
+    String charecters = "/^[a-zA-Z0-9]+$";
+
     public CreateCustomerGUI(int showingId, int[] seatIds)
     {
         System.out.print("showingId: " + showingId);
         for(int i : seatIds) {
             System.out.print("seat: " + i);
         }
-        
+
         drawCustomerFrame();
         this.showingId = showingId;
         this.seatIds = seatIds;
     }
-    
+
     public JButton getConfirmButton()
     {
         return confirmButton;
     }
-    
+
     public JTextField getNameField()
     {
         return nameField;
     }
-    
+
     public JTextField getNumberField()
     {
         return numberField;
@@ -50,7 +52,6 @@ public class CreateCustomerGUI extends JComponent
         int xPos = (dim.width / 2) - (frame.getWidth() / 2);
         int yPos = (dim.height / 2) - (frame.getHeight() / 2);
         frame.setLocation(xPos, yPos);
-        
 
         //Panel CENTER
         JPanel customerPanel = new JPanel();
@@ -77,49 +78,36 @@ public class CreateCustomerGUI extends JComponent
 
         thePanel.add(customerPanel, BorderLayout.CENTER);
         thePanel.add(buttonArea, BorderLayout.SOUTH);
-        
 
         frame.add(thePanel); 
         frame.setVisible(true);
-        
+
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        confirmButton.addActionListener(
-        e -> {
-            if (nameField.getText() != null && nameField.getText() != "" && numberField.getText() != null && numberField.getText() != "") 
-            {
-                try {
-                    processUserInput(numberField.getText(), nameField.getText());
-                    System.out.println("Did we get this far ??");
-                    MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
-                    MainController.displayReservationGUI(null);
-                    
-                    frame.dispose();
-                } catch (Exception ex) {
-                    MainController.displayErrorGUI(ex.getMessage());
-                }
+
+        confirmButton.addActionListener(e -> {
+            try{
+                processUserInput(numberField.getText(), nameField.getText());
+                MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
+                MainController.displayReservationGUI(null);
+                frame.dispose();
+            }
+            catch (Exception ex) {
+                MainController.displayErrorGUI(ex.getMessage());
             }
         });
     }
-    
-    public void processUserInput(String number, String name) throws Exception {
-        if(number == null || number == "") {
-            throw new Exception("You must provide a phone number to add reservation!");
-        } else {
-            try {
-                int value = Integer.parseInt(number);
-                
-                System.out.println(value);
-            } catch(Exception ex) {
-                throw new Exception("Phone number is not valid!");
+
+    public void processUserInput(String number, String name) throws IllegalArgumentException {
+            
+            if(!numberField.getText().matches(regex)) {
+                throw new IllegalArgumentException("Phone number is not valid!");
             }
-        }
-        if(name == null || name == "") {
-            throw new Exception("You must provide a phone number to add reservation!");
-        }
-        
-        
+
+            if (nameField.getText().matches(charecters)) {
+                throw new IllegalArgumentException("You must provide a valid name to add reservation!");
+            }
+        /*}catch(IllegalArgumentException ex) {
+            MainController.displayErrorGUI(ex.getMessage());
+        }*/
     }
-    
-    
 }
