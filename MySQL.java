@@ -77,8 +77,6 @@ public class MySQL
             e.printStackTrace();
             System.out.println("Now is a good time to panic!");
             MainController.displayErrorGUI(e.getMessage());
-        } finally {
-            //closeConnection();
         }
         return null;
     }
@@ -103,8 +101,6 @@ public class MySQL
             System.out.println(e.getMessage());
             e.printStackTrace();
             MainController.displayErrorGUI(e.getMessage());
-        } finally {
-            //closeConnection();
         }
         // Return -1 if no id just added. Consider replacing with exception.
         return -1;
