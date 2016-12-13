@@ -135,8 +135,8 @@ public class MainController{
     }
 
     public static void processUserInput(String number, String name) throws IllegalArgumentException {
-
-        if(!number.matches("\\d+")) {
+        //Skal ikke slettes!!!
+        if(!number.matches("\\d+") && number.length() != 8) {
             throw new IllegalArgumentException("Phone number is not valid!");
         }
 

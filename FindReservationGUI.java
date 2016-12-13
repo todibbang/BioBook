@@ -8,6 +8,9 @@ public class FindReservationGUI
     public static FindReservationGUI instance;
     private ArrayList<ReservationInformation> infoModels;
     private Container mainContainer;
+    private JTextField nameField;
+    private JTextField numberField;
+    private JButton searchButton;
     
     private FindReservationGUI()
     {
@@ -26,41 +29,28 @@ public class FindReservationGUI
     }
 
     private Container searchFields(){
-        // Set up the name field.
-        Container searchContainer = new Container();
-        searchContainer.setLayout(new BorderLayout());
-        JButton search = new JButton("Search");
-        search.setSize(new Dimension(40,60));
-        searchContainer.add(search, BorderLayout.SOUTH);
-
-        // Set up the name field.
-        Box nameLabelArea = Box.createHorizontalBox();
-        nameLabelArea.add(new JLabel("Name", JLabel.LEFT));
-        nameLabelArea.add(Box.createGlue());
-        JTextField nameField = new JTextField(50);
-        Box nameArea = Box.createVerticalBox();
-        nameArea.add(nameLabelArea);
-        nameArea.add(nameField);
-
-        // Set up the number number area.
-        Box numberLabelArea = Box.createHorizontalBox();
-        numberLabelArea.add(new JLabel("Phone", JLabel.LEFT));
-        numberLabelArea.add(Box.createGlue());
-        JTextField numberField = new JTextField(50);
-        Box numberArea = Box.createVerticalBox();
-        numberArea.add(numberLabelArea);
-        numberArea.add(numberField);
-
-        // Layout the entry-details fields in a panel.
-        Box singleLineFields = Box.createVerticalBox();
-        singleLineFields.add(nameArea);
-        singleLineFields.add(numberArea);
+        //Panel CENTER
         JPanel detailsPanel = new JPanel();
-        detailsPanel.setLayout(new BorderLayout());
-        detailsPanel.add(singleLineFields, BorderLayout.NORTH);
+        detailsPanel.setLayout(new GridLayout(2, 2));
+
+        JLabel nameLabel = new JLabel ("Name: ", JLabel.LEFT);
+        detailsPanel.add(nameLabel);
+        nameField = new JTextField("", 50);
+        detailsPanel.add(nameField);
+        JLabel numberLabel = new JLabel ("Number: ", JLabel.LEFT);
+        detailsPanel.add(numberLabel);
+        numberField = new JTextField("", 50);
+        detailsPanel.add(numberField);
+
+        //Panel with buttons
+        JPanel buttonArea = new JPanel();
+        buttonArea.setLayout(new FlowLayout());
+
+        searchButton = new JButton("Search");
+        buttonArea.add(searchButton);
 
         //ActionListener
-        search.addActionListener(e -> {
+        searchButton.addActionListener(e -> {
             try{
                 MainController.processUserInput(numberField.getText(), nameField.getText());
                 drawReservationGrid(numberField.getText(), nameField.getText());
@@ -72,7 +62,7 @@ public class FindReservationGUI
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(detailsPanel, BorderLayout.CENTER);
-        panel.add(search, BorderLayout.SOUTH);
+        panel.add(searchButton, BorderLayout.SOUTH);
         return panel;
     }
 

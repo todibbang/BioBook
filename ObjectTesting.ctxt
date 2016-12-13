@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ObjectTesting()
+comment0.text=\n\ Default\ constructor\ for\ test\ class\ Test\n
+comment1.params=
+comment1.target=void\ MovieObjectTest()
+comment2.params=
+comment2.target=void\ SeatObjectTest()
+comment3.params=
+comment3.target=void\ ObjectReservationInformationTest()
+numComments=4
