@@ -9,6 +9,4 @@ comment3.params=
 comment3.target=javax.swing.JTextField\ getNumberField()
 comment4.params=
 comment4.target=void\ drawCustomerFrame()
-comment5.params=number\ name
-comment5.target=void\ processUserInput(java.lang.String,\ java.lang.String)
-numComments=6
+numComments=5

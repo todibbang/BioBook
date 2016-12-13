@@ -20,7 +20,6 @@ public class FindReservationGUI
 
         Container searchContainer = new Container();
         searchContainer.setLayout(new GridLayout(4,0));
-        //searchContainer.add(
 
         mainContainer.add(searchFields(), BorderLayout.NORTH);
         MainController.redrawFrame(mainContainer); 
@@ -62,8 +61,12 @@ public class FindReservationGUI
 
         //ActionListener
         search.addActionListener(e -> {
-                //infoModels = MainController.searchForInput(numberField.getText(), nameField.getText());
+            try{
+                MainController.processUserInput(numberField.getText(), nameField.getText());
                 drawReservationGrid(numberField.getText(), nameField.getText());
+            } catch (IllegalArgumentException ex) {
+                MainController.displayErrorGUI(ex.getMessage());
+            }
         });
 
         JPanel panel = new JPanel();
@@ -80,7 +83,6 @@ public class FindReservationGUI
         AllInformationContainer.setLayout(new GridLayout(12,1));
         AllInformationContainer.setSize(900, 1000);
 
-        System.out.println("infoModels.size(): " + infoModels.size());
         for(ReservationInformation im : infoModels) {
             JPanel p = new JPanel();
             p.setLayout(new GridLayout(2,2));
@@ -152,7 +154,7 @@ public class FindReservationGUI
             change.addActionListener(e -> {
                     MainController.displayReservationGUI(im);
                     
-                });
+            });
             cancel.addActionListener(e -> {
                 MainController.deleteReservation(im.getReservationId());
                 mainContainer.remove(AllInformationContainer);
@@ -165,7 +167,6 @@ public class FindReservationGUI
             p.setBorder(BorderFactory.createEmptyBorder());
             p.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             AllInformationContainer.add(p);
-            
         }
         mainContainer.add(AllInformationContainer, BorderLayout.CENTER);
         MainController.redrawFrame(mainContainer);

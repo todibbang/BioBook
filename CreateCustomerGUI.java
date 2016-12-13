@@ -10,8 +10,6 @@ public class CreateCustomerGUI extends JComponent
     private JTextField numberField;
     private int showingId;
     private int [] seatIds;
-    String regex = "\\d+";
-    String charecters = "/^[a-zA-Z0-9]+$";
 
     public CreateCustomerGUI(int showingId, int[] seatIds)
     {
@@ -86,28 +84,14 @@ public class CreateCustomerGUI extends JComponent
 
         confirmButton.addActionListener(e -> {
             try{
-                processUserInput(numberField.getText(), nameField.getText());
+                MainController.processUserInput(numberField.getText(), nameField.getText());
                 MainController.createNewReservation(numberField.getText(), nameField.getText(), showingId, seatIds);
                 MainController.displayReservationGUI(null);
                 frame.dispose();
             }
-            catch (Exception ex) {
+            catch (IllegalArgumentException ex) {
                 MainController.displayErrorGUI(ex.getMessage());
             }
         });
-    }
-
-    public void processUserInput(String number, String name) throws IllegalArgumentException {
-            
-            if(!numberField.getText().matches(regex)) {
-                throw new IllegalArgumentException("Phone number is not valid!");
-            }
-
-            if (nameField.getText().matches(charecters)) {
-                throw new IllegalArgumentException("You must provide a valid name to add reservation!");
-            }
-        /*}catch(IllegalArgumentException ex) {
-            MainController.displayErrorGUI(ex.getMessage());
-        }*/
     }
 }
