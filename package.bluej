@@ -63,9 +63,15 @@ dependency9.from=ReservationGUI
 dependency9.to=Seat
 dependency9.type=UsesDependency
 objectbench.height=76
+<<<<<<< Updated upstream
 objectbench.width=1392
 package.editor.height=673
 package.editor.width=1312
+=======
+objectbench.width=1232
+package.editor.height=634
+package.editor.width=1152
+>>>>>>> Stashed changes
 package.editor.x=0
 package.editor.y=23
 package.numDependencies=21
@@ -141,7 +147,11 @@ target13.y=200
 target2.editor.height=700
 target2.editor.width=900
 target2.editor.x=59
+<<<<<<< Updated upstream
 target2.editor.y=135
+=======
+target2.editor.y=96
+>>>>>>> Stashed changes
 target2.height=50
 target2.name=CreateCustomerGUI
 target2.naviview.expanded=false
@@ -206,7 +216,7 @@ target6.y=480
 target7.editor.height=700
 target7.editor.width=900
 target7.editor.x=375
-target7.editor.y=115
+target7.editor.y=96
 target7.height=50
 target7.name=ReservationGUI
 target7.naviview.expanded=false

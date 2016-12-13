@@ -15,9 +15,10 @@ public class ReservationGUI extends JComponent
     private int currentTimeIndex;
     private int currentWantedIndex;
     private ArrayList<Showing> showings;
-
     private ArrayList<Seat> wantedSeats;
     private ArrayList<Seat> seatsToBeChanged;
+    private int availableSeatsAmount;
+    private int reservedSeatsAmount;
 
     private int showingId;
     Container topBar;
@@ -120,6 +121,7 @@ public class ReservationGUI extends JComponent
         
         c.add(descriptionText);
         c.add(new JLabel(viewedMovie.getPlaytime()+" minutes"));
+        c.add(new JLabel("Seats: " + reservedSeatsAmount + " / " + availableSeatsAmount));
 
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(viewedMovie.getImageSource()).getImage().getScaledInstance(200, 100, Image.SCALE_DEFAULT));
         JLabel imageLbl = new JLabel(imageIcon);
@@ -135,7 +137,7 @@ public class ReservationGUI extends JComponent
         MainController.redrawFrame(mainContainer);
     }
 
-    private void drawDropDowns() { 
+    private void drawDropDownsAndSeats() { 
         topBar.removeAll();
         
         createMovieDropDown();
@@ -149,8 +151,10 @@ public class ReservationGUI extends JComponent
     }
 
     public void redrawScreenItems() {
+        
+        drawDropDownsAndSeats();
+        
         createLeftPanel();
-        drawDropDowns();
     }
     
     private void createMovieDropDown() {
@@ -174,8 +178,7 @@ public class ReservationGUI extends JComponent
             JComboBox thisBox = (JComboBox)e.getSource();
             currentTitle = (String)thisBox.getSelectedItem();
             viewedMovie = movies.get(thisBox.getSelectedIndex());
-            createLeftPanel();
-            drawDropDowns();
+            redrawScreenItems();
         });
         drawDropDown(movieBox);
     }
@@ -210,7 +213,7 @@ public class ReservationGUI extends JComponent
         dateBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
             currentDate = showingDates.get(thisBox.getSelectedIndex());
-            drawDropDowns();
+            redrawScreenItems();
         });
         drawDropDown(dateBox);
     }
@@ -248,7 +251,7 @@ public class ReservationGUI extends JComponent
             JComboBox thisBox = (JComboBox)e.getSource();
             currentTimeIndex = thisBox.getSelectedIndex();
             currentTime = (String) thisBox.getSelectedItem();
-            drawDropDowns();
+            redrawScreenItems();
         });
 
         drawDropDown(timeBox);
@@ -262,7 +265,7 @@ public class ReservationGUI extends JComponent
         seatBox.addActionListener( e -> {
             JComboBox thisBox = (JComboBox)e.getSource();
             currentWantedIndex = thisBox.getSelectedIndex();
-            drawDropDowns();
+            redrawScreenItems();
         });
         drawDropDown(seatBox);
     }
@@ -276,7 +279,10 @@ public class ReservationGUI extends JComponent
     }
     
     private void drawRoomWithSeats(int lW, int showingId) {
-        ArrayList<Seat> seats = MainController.findFreeSeats(lW, showingId);
+        ArrayList<Seat> seats = MainController.getSeatsForShowing(lW, showingId);
+        availableSeatsAmount = seats.size();
+        reservedSeatsAmount = availableSeatsAmount;
+        
         wantedSeats.clear();
         
         if(seatsToBeChanged != null) {
@@ -307,6 +313,7 @@ public class ReservationGUI extends JComponent
             if(s.getSeatTaken()) 
             {
                 b.setBackground(Color.RED);
+                reservedSeatsAmount--;
             } 
             else if(!s.getSeatInSequence()) 
             {

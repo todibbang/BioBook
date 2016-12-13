@@ -22,7 +22,7 @@ public class CreateCustomerGUI extends JComponent
         this.showingId = showingId;
         this.seatIds = seatIds;
     }
-
+    
     public JButton getConfirmButton()
     {
         return confirmButton;

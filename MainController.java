@@ -85,32 +85,8 @@ public class MainController{
         MySQL.getInstance().closeConnection();
         return MySQL.getInstance().executeCommand(s.substring(0, s.length() - 2));
     } 
-    /*
-    public static ArrayList<Seat> getAllSeatsForShowing(int showingId){ 
-        ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showings ON seats.roomId = showings.roomId WHERE showings.showingId = " + showingId + "");
-        ArrayList<Seat> seats = new ArrayList<Seat>();
-        for(ArrayList<String> s : seatString) {
-            seats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        
-        ArrayList<ArrayList<String>> takenSeatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showingReservations ON seats.seatId = showingReservations.seatId WHERE showingReservations.showingId = " + showingId + ""  + "");
-        ArrayList<Seat> takenSeats = new ArrayList<Seat>();
-        for(ArrayList<String> s : takenSeatString) {
-            takenSeats.add(new Seat(Integer.parseInt(s.get(0)), s.get(1), Integer.parseInt(s.get(2)), Integer.parseInt(s.get(3)), 0));
-        }
-        
-        for(Seat s : seats) {
-             for(Seat st : takenSeats) {
-                 if(s.getSeatId() == st.getSeatId()) {
-                     s.setSeatTaken(true);
-                 }
-             }
-         }
-        MySQL.getInstance().closeConnection();
-        return seats;
-    }*/
-
-    public static ArrayList<Seat> findFreeSeats(int lengthRequired, int showingId) {
+    
+    public static ArrayList<Seat> getSeatsForShowing(int lengthRequired, int showingId) {
         ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showings ON seats.roomId = showings.roomId WHERE showings.showingId = " + showingId + "");
         ArrayList<Seat> seats = new ArrayList<Seat>();
         for(ArrayList<String> s : seatString) {
@@ -132,20 +108,26 @@ public class MainController{
          } 
         
         //ArrayList<Seat> seats = null;//getAllSeatsForShowing(showing);
-        ArrayList<Seat> seatsNextToEachOther = new ArrayList<Seat>();
-        for(int i = 0 ; i <= seats.size(); i++) {
-            if(i == seats.size() || (i > 0 && !seats.get(i).getRow().contains(seats.get(i-1).getRow())) || seats.get(i).getSeatTaken())  {
-                if(seatsNextToEachOther.size() >= lengthRequired) {
-                    for(Seat s : seatsNextToEachOther) {
-                        s.setSeatInSequence(true);
+        if(lengthRequired > 1) {
+            ArrayList<Seat> seatsNextToEachOther = new ArrayList<Seat>();
+            for(int i = 0 ; i <= seats.size(); i++) {
+                if(i == seats.size() || (i > 0 && !seats.get(i).getRow().contains(seats.get(i-1).getRow())) || seats.get(i).getSeatTaken())  {
+                    if(seatsNextToEachOther.size() >= lengthRequired) {
+                        for(Seat s : seatsNextToEachOther) {
+                            s.setSeatInSequence(true);
+                        }
+                    }
+                    seatsNextToEachOther = new ArrayList<Seat>();
+                }
+                if(i < seats.size())  {
+                    if(!seats.get(i).getSeatTaken()) {
+                        seatsNextToEachOther.add(seats.get(i));
                     }
                 }
-                seatsNextToEachOther = new ArrayList<Seat>();
             }
-            if(i < seats.size())  {
-                if(!seats.get(i).getSeatTaken()) {
-                    seatsNextToEachOther.add(seats.get(i));
-                }
+        } else {
+            for(Seat s : seats) {
+                s.setSeatInSequence(true);
             }
         }
         MySQL.getInstance().closeConnection();
