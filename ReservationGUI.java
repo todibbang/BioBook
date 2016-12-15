@@ -181,7 +181,7 @@ public class ReservationGUI extends JComponent
     }
     
     private void createMovieDateDropDown(int movieId) {
-        showings = MainController.getShowingFromMovieTitle(movieId);
+        showings = MainController.getShowingFromMovieId(movieId);
         if(showings == null || showings.size() == 0) return;
         ArrayList<String> showingDates = new ArrayList<String>();
 
@@ -216,7 +216,7 @@ public class ReservationGUI extends JComponent
     }
     
     private void createMovieTimeDropDown(int movieId) {
-        ArrayList<Showing> showingBeforeOrder = MainController.getShowingFromMovieTitle(movieId);
+        ArrayList<Showing> showingBeforeOrder = MainController.getShowingFromMovieId(movieId);
         if(showingBeforeOrder == null || showingBeforeOrder.size() == 0) return;
         
         showings = new ArrayList<Showing>();
