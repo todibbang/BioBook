@@ -25,8 +25,8 @@ public class ObjectTesting
     @Test
     public void MovieObjectTest()
     {
-        Movie movie1 = new Movie(9, "TestFilm", 120, "image.jpg", "Jeg lorte film");
-        assertEquals("Jeg lorte film", movie1.getDescription());
+        Movie movie1 = new Movie(9, "TestFilm", 120, "image.jpg", "En ok film");
+        assertEquals("En ok film", movie1.getDescription());
         assertNotNull(movie1.getTitle());
         assertEquals("TestFilm", movie1.getTitle());
         assertEquals(120, movie1.getPlaytime());
@@ -49,7 +49,7 @@ public class ObjectTesting
     @Test
     public void ObjectReservationInformationTest()
     {
-        Movie movie1 = new Movie(1, "Dum film", 123, "image.jpg", "Lort");
+        Movie movie1 = new Movie(1, "God film", 123, "image.jpg", "Lort");
         Reservation reservat1 = new Reservation(movie1, "12/12/12", "14:00", 1, 4, 5);
         assertEquals("12/12/12", reservat1.getDate());
         assertNotNull(reservat1.getMovie());
@@ -57,7 +57,21 @@ public class ObjectTesting
         assertEquals(5, reservat1.getShowingId());
         reservat1.addSeatId(2);
     }
+
+    @Test
+    public void ShowingObjectTesting()
+    {
+        Showing showing1 = new Showing(1, "12/12", "14:00", 3, 1);
+        assertNotNull(showing1.getTime());
+        assertEquals("14:00", showing1.getTime());
+        assertNotNull(showing1.getDate());
+        assertEquals("12/12", showing1.getDate());
+        assertEquals(1, showing1.getMovieId());
+        assertEquals(3, showing1.getSalId());
+        assertEquals(1, showing1.getShowingId());
+    }
 }
+
 
 
 
