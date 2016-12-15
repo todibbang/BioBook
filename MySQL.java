@@ -13,8 +13,10 @@ public class MySQL
 {
     // Used for singleton pattern.
     private static MySQL instance;
+    
     // Used to close the connection again.
     private static Connection connection;
+    
     // Data for the db -> this one is mine, feel free to play around.
     private static String username = "bio";
     private static String password = "letathuske";
@@ -111,7 +113,6 @@ public class MySQL
         return true;
     }
     
-    
     // Close the connection, if possible - and return weather or not it was closed correctly.
     public boolean closeConnection() {
         try {
@@ -122,9 +123,4 @@ public class MySQL
         }
         return true;
     }
-
-    // Singleton pattern.
-    // MySQL sql = new MySQL() <-- Will not work!
-    // MySQL sql = sql.getInstance() <- Correct!
-    
 }

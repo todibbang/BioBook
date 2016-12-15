@@ -2,7 +2,7 @@
 comment0.params=
 comment0.target=ReservationGUI()
 comment1.params=im
-comment1.target=void\ setGUIVisible(ReservationInformation)
+comment1.target=void\ setGUIVisible(Reservation)
 comment10.params=showingId
 comment10.target=void\ drawRoomWithSeats(int)
 comment11.params=

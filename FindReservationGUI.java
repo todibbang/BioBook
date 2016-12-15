@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FindReservationGUI
 {
     public static FindReservationGUI instance;
-    private ArrayList<ReservationInformation> infoModels;
+    private ArrayList<Reservation> infoModels;
     private Container mainContainer;
     private JTextField nameField;
     private JTextField numberField;
@@ -14,7 +14,7 @@ public class FindReservationGUI
     
     private FindReservationGUI()
     {
-        infoModels = new ArrayList<ReservationInformation>();
+        infoModels = new ArrayList<Reservation>();
     }
 
     public void setGUIVisible() {
@@ -32,7 +32,8 @@ public class FindReservationGUI
         //Panel CENTER
         JPanel detailsPanel = new JPanel();
         detailsPanel.setLayout(new GridLayout(2, 2));
-
+        
+        //Textfields for user-inputs
         JLabel nameLabel = new JLabel ("Name: ", JLabel.LEFT);
         detailsPanel.add(nameLabel);
         nameField = new JTextField("", 50);
@@ -67,19 +68,21 @@ public class FindReservationGUI
     }
 
     private void drawReservationGrid(String number, String name) {
-        infoModels = MainController.getReservationInformation(number, name);
+        infoModels = MainController.getReservations(number, name);
         
         Container AllInformationContainer = new Container();
         AllInformationContainer.setLayout(new GridLayout(12,1));
         AllInformationContainer.setSize(900, 1000);
 
-        for(ReservationInformation im : infoModels) {
+        for(Reservation im : infoModels) {
             JPanel p = new JPanel();
             p.setLayout(new GridLayout(2,2));
             
+            //Creates layout of information
             Container infoGrid = new Container();
             infoGrid.setLayout(new GridLayout());
-
+            
+            //Draws top part of information frame:
             Box movieLabel = Box.createHorizontalBox();
             movieLabel.add(new JLabel("Movie: ", JLabel.LEFT));
             movieLabel.add(Box.createGlue());
@@ -105,7 +108,8 @@ public class FindReservationGUI
             infoGrid.add(dateLabel);
             infoGrid.add(seatLabel);
             infoGrid.add(purchaseLabel);
-
+            
+            //Draws bottumhalf of information boxes
             Container valueGrid = new Container();
             valueGrid.setLayout(new GridLayout());
 
@@ -134,7 +138,8 @@ public class FindReservationGUI
             valueGrid.add(whenLabel);
             valueGrid.add(amountOfSeatLabel);
             valueGrid.add(orderNrLabel);
-
+            
+            //Places a change and cancel button of each "ticket"
             JButton changeButton = new JButton("Change order");
             JButton cancelButton = new JButton("Cancel order");
 
@@ -143,14 +148,13 @@ public class FindReservationGUI
 
             changeButton.addActionListener(e -> {
                     MainController.displayReservationGUI(im);
-                    
             });
             cancelButton.addActionListener(e -> {
                 MainController.deleteReservation(im.getReservationId());
                 mainContainer.remove(AllInformationContainer);
                 drawReservationGrid(number, name);
-                
             });
+            
             // Draws line around each "ticket" 
             p.add(infoGrid);
             p.add(valueGrid);

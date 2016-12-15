@@ -7,8 +7,8 @@ public class MainController{
         MainController.displayReservationGUI(null);
     }
 
-    public static ArrayList<ReservationInformation> getReservationInformation(String number, String name) {
-        ArrayList<ReservationInformation> info = new ArrayList<ReservationInformation>();
+    public static ArrayList<Reservation> getReservations(String number, String name) {
+        ArrayList<Reservation> info = new ArrayList<Reservation>();
         try{
             MySQL.getInstance().openConnection();
             double startTime = System.currentTimeMillis();
@@ -25,7 +25,7 @@ public class MainController{
                     if(i > 0 && info.get(info.size()-1).getReservationId() == Integer.parseInt(infoString.get(i).get(8))) {
                         info.get(info.size()-1).addSeatId(Integer.parseInt(infoString.get(i).get(7)));
                     } else {
-                        info.add(new ReservationInformation(
+                        info.add(new Reservation(
                                 new Movie(Integer.parseInt(infoString.get(i).get(0)), infoString.get(i).get(1), Integer.parseInt(infoString.get(i).get(2)), 
                                     infoString.get(i).get(3), infoString.get(i).get(4)), infoString.get(i).get(5), infoString.get(i).get(6), Integer.parseInt(infoString.get(i).get(7)), 
                                 Integer.parseInt(infoString.get(i).get(8)), Integer.parseInt(infoString.get(i).get(9))));
@@ -205,7 +205,7 @@ public class MainController{
         new CreateCustomerGUI(showingId, seatIds);
     }
 
-    public static void displayReservationGUI(ReservationInformation ri) {
+    public static void displayReservationGUI(Reservation ri) {
         ReservationGUI.getInstance().setGUIVisible(ri);
     }
 

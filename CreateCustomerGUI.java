@@ -79,9 +79,8 @@ public class CreateCustomerGUI extends JComponent
 
         frame.add(thePanel); 
         frame.setVisible(true);
-
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
+        //Checks if input is legal and proceeds to book the reservation
         confirmButton.addActionListener(e -> {
             try{
                 MainController.processUserInput(numberField.getText(), nameField.getText());

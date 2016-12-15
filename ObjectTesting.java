@@ -50,7 +50,7 @@ public class ObjectTesting
     public void ObjectReservationInformationTest()
     {
         Movie movie1 = new Movie(1, "Dum film", 123, "image.jpg", "Lort");
-        ReservationInformation reservat1 = new ReservationInformation(movie1, "12/12/12", "14:00", 1, 4, 5);
+        Reservation reservat1 = new Reservation(movie1, "12/12/12", "14:00", 1, 4, 5);
         assertEquals("12/12/12", reservat1.getDate());
         assertNotNull(reservat1.getMovie());
         assertNotNull(reservat1.getTime());

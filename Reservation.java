@@ -1,5 +1,5 @@
 import java.util.*;
-public class ReservationInformation {
+public class Reservation {
 
     private String date;
     private String time;
@@ -8,7 +8,7 @@ public class ReservationInformation {
     private int showingId;
     private Movie movie; 
 
-    public ReservationInformation(Movie m, String date, String time, int seatId, int reservationId, int showingId) {
+    public Reservation(Movie m, String date, String time, int seatId, int reservationId, int showingId) {
         movie = m;
         this.date = date;
         this.time = time;

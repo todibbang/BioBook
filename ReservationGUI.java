@@ -21,23 +21,21 @@ public class ReservationGUI extends JComponent
     private int reservedSeatsAmount;
 
     private int showingId;
-    Container topBar;
-    Container leftBar;
-    Container roomLayout;
-    JComboBox dateBox;
-    JComboBox timeBox;
-    JComboBox seatBox;
-    Container dateContainer;
-    Container timeContainer;
-    Container seatContainer;
-    ArrayList<Movie>movies;
+    private Container topBar;
+    private Container leftBar;
+    private Container roomLayout;
+    private JComboBox dateBox;
+    private JComboBox timeBox;
+    private JComboBox seatBox;
+    private Container dateContainer;
+    private Container timeContainer;
+    private Container seatContainer;
+    private ArrayList<Movie>movies;
 
-    private ReservationGUI()
-    {
-
+    private ReservationGUI(){
     }
     
-    public void setGUIVisible(ReservationInformation im) {
+    public void setGUIVisible(Reservation im) {
         movies = MainController.getAllMovies();
         viewedMovie = movies.get(0);
 
@@ -151,11 +149,8 @@ public class ReservationGUI extends JComponent
     }
 
     public void redrawScreenItems() {
-        
         drawDropDownsAndSeats();
-        
         createLeftPanel();
-
     }
     
     private void createMovieDropDown() {
@@ -174,6 +169,7 @@ public class ReservationGUI extends JComponent
         
         movieBox.setSelectedIndex(index);
         viewedMovie = movies.get(index);
+        
         movieBox.addActionListener( e -> {
 
             JComboBox thisBox = (JComboBox)e.getSource();
@@ -346,7 +342,6 @@ public class ReservationGUI extends JComponent
         }
 
         mainContainer.add( roomLayout, BorderLayout.CENTER);
-        System.out.println((System.currentTimeMillis() - startTime) / 1000 + " secs drawing seats");
     }
     
     public static ReservationGUI getInstance()
