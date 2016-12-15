@@ -37,5 +37,5 @@ public class ReservationInformation {
     }
     public void addSeatId(int s) {
         seatIds.add(s);
-    }
+    } 
 }

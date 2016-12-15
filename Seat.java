@@ -31,14 +31,6 @@ public class Seat {
     public int getCol() {
         return col;
     }
-    /*
-    public int getRoomId() {
-        return roomId;
-    } */
-    /* 
-    public int getReservationId() {
-        return reservationId;
-    } */
     
     public void setSeatTaken(boolean t) {
         seatTaken = t;
@@ -55,25 +47,4 @@ public class Seat {
     public boolean getSeatInSequence() {
         return seatInSequence;
     }
-    
-    /*
-         
-         // dette skal slettes fra hertil
-         String prevousRow = "";
-         for(Seat s : seats) {
-             if(!s.getRow().contains(prevousRow)) {
-                 System.out.println("");
-             }
-             if(s.getSeatTaken()) {
-                 System.out.print("|"+s.getRow() + s.getCol() + "| ");
-             } else if(s.getSeatInSequence()) {
-                 System.out.print(":"+s.getRow() + s.getCol() + ": ");
-             } else {
-                 System.out.print(" "+s.getRow() + s.getCol() + "  ");
-             }
-             prevousRow = s.getRow();
-             
-         }
-         System.out.println("\n'|' means the seat is reserved___':' means the seats is free and qualified for your requirements");
-         // og ned hertil */
     }

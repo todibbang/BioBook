@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ resetAll()
+comment1.params=
+comment1.target=void\ resetMovies()
+comment2.params=
+comment2.target=void\ resetShowing()
+comment3.params=
+comment3.target=void\ resetSeats()
+comment4.params=
+comment4.target=void\ resetReservations()
+numComments=5

@@ -9,7 +9,6 @@ comment3.params=
 comment3.target=int\ getCol()
 comment4.params=t
 comment4.target=void\ setSeatTaken(boolean)
-comment4.text=\ \n\ \ \ \ public\ int\ getReservationId()\ {\n\ \ \ \ \ \ \ \ return\ reservationId;\n}
 comment5.params=
 comment5.target=boolean\ getSeatTaken()
 comment6.params=s

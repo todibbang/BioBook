@@ -46,7 +46,7 @@ public class MySQL
         ResultSet data = null;
         try {
             // Create connection...
-            connection = DriverManager.getConnection(connectionString, username, password);
+            //connection = DriverManager.getConnection(connectionString, username, password);
             // Prepare statement...
             Statement sqlStatement = connection.createStatement();
             // Execute!
@@ -87,7 +87,7 @@ public class MySQL
         ResultSet rs;
         try {
             // Connect...
-            connection = DriverManager.getConnection(connectionString, username, password);
+            //connection = DriverManager.getConnection(connectionString, username, password);
             // Prepare...
             Statement sqlStatement = connection.createStatement();
             // Update!
@@ -106,6 +106,18 @@ public class MySQL
         return -1;
     } 
 
+    public boolean openConnection() {
+        try {
+            connection = DriverManager.getConnection(connectionString, username, password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            MainController.displayErrorGUI(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+    
+    
     // Close the connection, if possible - and return weather or not it was closed correctly.
     public boolean closeConnection() {
         try {

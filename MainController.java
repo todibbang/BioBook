@@ -8,6 +8,8 @@ public class MainController{
     }
     
     public static ArrayList<ReservationInformation> getReservationInformation(String number, String name) {
+        MySQL.getInstance().openConnection();
+        double startTime = System.currentTimeMillis();
         ArrayList<ArrayList<String>> result = MySQL.getInstance().executeQuery("SELECT reservationId FROM reservations WHERE number='"+number+"' OR " + "name='" + name+"'");
         ArrayList<ReservationInformation> info = new ArrayList<ReservationInformation>();
         for(ArrayList<String> r : result) {
@@ -31,11 +33,13 @@ public class MainController{
         }
         
         MySQL.getInstance().closeConnection();
+        System.out.println((System.currentTimeMillis() - startTime) / 1000 + " secs");
         return info;
     }
     
     public static ArrayList<Showing> getShowingFromMovieTitle(int id) //Taget fra Showings
     { 
+        MySQL.getInstance().openConnection();
         ArrayList<ArrayList<String>> showingString = MySQL.getInstance().executeQuery("SELECT * FROM showings WHERE movieId = " + id);
         ArrayList<Showing> showings = new ArrayList<Showing>();
         for(ArrayList<String> s : showingString) {
@@ -46,6 +50,7 @@ public class MainController{
     } 
     
     public static ArrayList<Movie> getAllMovies(){ 
+        MySQL.getInstance().openConnection();
         ArrayList<ArrayList<String>> movieString = MySQL.getInstance().executeQuery("SELECT * FROM movies");
         ArrayList<Movie> movies = new ArrayList<Movie>();
         for(ArrayList<String> m : movieString) {
@@ -56,6 +61,7 @@ public class MainController{
     }
     
     public static void modifyReservation(int reservationId, int showingId, int[] seatIds) {
+        MySQL.getInstance().openConnection();
         MySQL.getInstance().executeCommand("DELETE FROM showingReservations WHERE reservationId = " + reservationId);
         if(seatIds.length > 0) {
             addShowingReservation(showingId, reservationId, seatIds);
@@ -66,13 +72,14 @@ public class MainController{
     }
     
     public static void deleteReservation(int reservationId) {
+        MySQL.getInstance().openConnection();
         MySQL.getInstance().executeCommand("DELETE FROM showingReservations WHERE reservationId = " + reservationId);
         MySQL.getInstance().executeCommand("DELETE FROM reservations WHERE reservationId = " + reservationId);
         MySQL.getInstance().closeConnection();
     }
     
     public static void createNewReservation(String number, String name, int showingId, int[] seatIds) {
-        System.out.println("CREATING NEW RESERVATION. name: " + name + ", number: " + number + ", showingId: " + showingId);
+        MySQL.getInstance().openConnection();
         int id = MySQL.getInstance().executeCommand("INSERT INTO reservations (number, name) VALUES ('"+number +"','"+ name +"')");
         //ArrayList<Reservation> r = getReservations(number, name);
         addShowingReservation(showingId, id, seatIds);
@@ -80,13 +87,16 @@ public class MainController{
     }
     
     public static int addShowingReservation(int showingId, int reservationId, int[] seatIds) {
+        MySQL.getInstance().openConnection();
         String s = "INSERT INTO showingReservations (showingId, reservationId, seatId) VALUES";
         for(int i = 0; i < seatIds.length; i++){ s += "("+ showingId +","+ reservationId + "," + seatIds[i] +"), ";  }
         MySQL.getInstance().closeConnection();
         return MySQL.getInstance().executeCommand(s.substring(0, s.length() - 2));
     } 
-    
+
     public static ArrayList<Seat> getSeatsForShowing(int lengthRequired, int showingId) {
+        MySQL.getInstance().openConnection();
+        double startTime = System.currentTimeMillis();
         ArrayList<ArrayList<String>> seatString = MySQL.getInstance().executeQuery("SELECT * FROM seats LEFT JOIN showings ON seats.roomId = showings.roomId WHERE showings.showingId = " + showingId + "");
         ArrayList<Seat> seats = new ArrayList<Seat>();
         for(ArrayList<String> s : seatString) {
@@ -131,9 +141,10 @@ public class MainController{
             }
         }
         MySQL.getInstance().closeConnection();
+        System.out.println((System.currentTimeMillis() - startTime) / 1000 + " secs");
         return seats;
     }
-
+    
     public static void processUserInput(String number, String name) throws IllegalArgumentException {
         //Skal ikke slettes!!!
         if(!number.matches("\\d+") && number.length() != 8) {
