@@ -33,7 +33,5 @@ public class Showing{
     public int getMovieId() {
         return movieId;
     }
-
-    //lav get methods til fields
 }
 

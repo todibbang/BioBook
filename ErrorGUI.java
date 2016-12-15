@@ -11,12 +11,13 @@ public class ErrorGUI extends JComponent
     private int showingId;
     private int [] seatIds;
     
+    //Tager imod en String message og tegner Error-vinduet alt efter fejlen.
     public ErrorGUI(String message)
     {
-        drawCustomerFrame(message);
+        drawErrorFrame(message);
     }
 
-    public void drawCustomerFrame(String message)
+    private void drawErrorFrame(String message)
     {
         frame = new JFrame("Error");
         frame.setSize(600, 150);
@@ -27,7 +28,8 @@ public class ErrorGUI extends JComponent
         int xPos = (dim.width / 2) - (frame.getWidth() / 2);
         int yPos = (dim.height / 2) - (frame.getHeight() / 2);
         frame.setLocation(xPos, yPos);
-
+        
+        //Skriver fejlbeskeden, alt efter hvilken fejl, som bliver kaldt via 'message'.
         JLabel messageLabel = new JLabel (message);
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         confirmButton = new JButton("OK");
@@ -40,6 +42,7 @@ public class ErrorGUI extends JComponent
         frame.add(thePanel);
         frame.setVisible(true);
         
+        //Fjerner pop-up vinduet, når brugeren trykker på 'Confirm'.
         confirmButton.addActionListener(e -> {
                frame.dispose();
         });

@@ -43,17 +43,21 @@ public class MySQL
         ResultSet data = null;
         try {
             Statement sqlStatement = connection.createStatement();
+            
             //Kald udføres
             data = sqlStatement.executeQuery(statement);
+            
             //Oprettelse af ArrayList der skal indeholde den returnerede data
             ArrayList<ArrayList<String>> resultStrings = new ArrayList<ArrayList<String>>();
             String columns [];
             ResultSetMetaData rsmd = data.getMetaData();
             columns = new String [rsmd.getColumnCount()];
+            
             //for-loop der identificere de relevante kolonnenavne og putter dem i Arrayet columns
             for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                 columns[i-1] = rsmd.getColumnName(i);
             } 
+            
             //looper ResultSetet igennem og for hver række oprettes et nyt ArrayList<String> der får tilføjet en string for hvert element i Arrayet columns
             while (data.next()) {
                 ArrayList<String> thisRs = new ArrayList<String>();
@@ -62,6 +66,7 @@ public class MySQL
                 }
                 resultStrings.add(thisRs);
             }
+            
             //resultat strengene returneres 
             return resultStrings;
         } catch (SQLException e) {
@@ -70,10 +75,10 @@ public class MySQL
         }
         return null;
     }
-
+    
+    //Denne metoder tager String, som den eksikverer i SQL-databasen
     public int executeCommand(String statement) {
         // Debug
-        System.out.println("[MySQL] " + statement);
         ResultSet rs;
         try {
             // Connect...
@@ -85,7 +90,6 @@ public class MySQL
             rs = sqlStatement.getGeneratedKeys();
             // Get ID of most recent row added, if any.
             if(rs.next()) {
-                System.out.println("SUCCESS \n");
                 return rs.getInt(1);}
         } catch (SQLException e) {
             MainController.displayErrorGUI(e.getMessage());

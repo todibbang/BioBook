@@ -11,35 +11,16 @@ public class CreateCustomerGUI extends JComponent
     private int showingId;
     private int [] seatIds;
 
-    public CreateCustomerGUI(int showingId, int[] seatIds)
-    {
-        System.out.print("showingId: " + showingId);
-        for(int i : seatIds) {
-            System.out.print("seat: " + i);
-        }
-
+    //Tager imod en forestilling og sæder for forestillingen, og tegner pop-up vinduet til at indtaste
+    //navn og nummer.
+    public CreateCustomerGUI(int showingId, int[] seatIds) {
         drawCustomerFrame();
         this.showingId = showingId;
         this.seatIds = seatIds;
     }
-    
-    public JButton getConfirmButton()
-    {
-        return confirmButton;
-    }
 
-    public JTextField getNameField()
-    {
-        return nameField;
-    }
-
-    public JTextField getNumberField()
-    {
-        return numberField;
-    }
-
-    public void drawCustomerFrame()
-    {
+    //Tegner frame, textField og 'Confirm'-knappen med en actionListener.
+    private void drawCustomerFrame() {
         frame = new JFrame("Create customer");
 
         frame.setSize(600, 150);
@@ -80,7 +61,9 @@ public class CreateCustomerGUI extends JComponent
         frame.add(thePanel); 
         frame.setVisible(true);
         
-        //Checks if input is legal and proceeds to book the reservation
+        //Denne actionListener er forbundet til "Confirm"-knappen. Først laver den et eksplicit tjek på
+        //brugerens input, der vil blive smidt en IllegalArgumentException fra MainController.processUserInput
+        //hvis det er ugyldigt. Ellers vil den fortsætte at oprette reservationen.
         confirmButton.addActionListener(e -> {
             try{
                 MainController.processUserInput(numberField.getText(), nameField.getText());

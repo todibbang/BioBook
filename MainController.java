@@ -8,16 +8,17 @@ public class MainController{
         MainController.displayReservationGUI(null);
     }
 
-    
+    //Denne metode tager imod et navn og nummer på en kunde, og finder kundens information omkring de reservationer, 
+    //som matcher via en mange til mange relation i vores SQL-tabeller.
     public static ArrayList<Reservation> getReservations(String number, String name) {
         ArrayList<Reservation> info = new ArrayList<Reservation>();
         try{
-            //Denne metode først en liste af reservationsIder passende til enten gevet navn eller nummer
+            //Denne metode først en liste af reservationsId'er passende til enten givet navn eller nummer
             MySQL.getInstance().openConnection();
             double startTime = System.currentTimeMillis();
             ArrayList<ArrayList<String>> result = MySQL.getInstance().executeQuery("SELECT reservationId FROM reservations WHERE number='"+number+"' OR " + "name='" + name+"'");
             
-            //Dernest loopes alle id'erne igennem, og for hvert id laves et SELECT SQL kald der returnerer en række information om den givne reservation.
+            //Dernæst loopes alle id'erne igennem, og for hvert id laves et SELECT SQL kald der returnerer en række information om den givne reservation.
             for(ArrayList<String> r : result) {
                 ArrayList<ArrayList<String>> infoString = MySQL.getInstance().executeQuery("SELECT movies.movieId, movies.title, movies.playtime, "+
                         "movies.imageSource, movies.description, showings.date, showings.time, showingReservations.seatId, showingReservations.reservationId, "+

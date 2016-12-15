@@ -1,13 +1,11 @@
 import java.util.ArrayList;
 
 public class Seat {
-
     private int seatId;
     private String row;
     private int col;
     private int roomId;
     private int reservationId;
-    
     
     private boolean seatTaken;
     private boolean seatInSequence; 

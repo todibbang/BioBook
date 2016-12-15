@@ -53,18 +53,8 @@ dependency24.type=UsesDependency
 dependency25.from=ObjectTesting
 dependency25.to=MainController
 dependency25.type=UsesDependency
-<<<<<<< Updated upstream
 dependency26.from=ObjectTesting
 dependency26.to=Showing
-=======
-<<<<<<< HEAD
-dependency26.from=GenerateDatabase
-dependency26.to=MySQL
-=======
-dependency26.from=ObjectTesting
-dependency26.to=Showing
->>>>>>> origin/development
->>>>>>> Stashed changes
 dependency26.type=UsesDependency
 dependency3.from=MainController
 dependency3.to=Showing
@@ -88,9 +78,9 @@ dependency9.from=ReservationGUI
 dependency9.to=Seat
 dependency9.type=UsesDependency
 objectbench.height=76
-objectbench.width=1253
-package.editor.height=715
-package.editor.width=1145
+objectbench.width=1392
+package.editor.height=673
+package.editor.width=1312
 package.editor.x=0
 package.editor.y=23
 package.numDependencies=26
@@ -109,18 +99,8 @@ target1.showInterface=false
 target1.type=ClassTarget
 target1.typeParameters=
 target1.width=140
-<<<<<<< Updated upstream
 target1.x=230
 target1.y=80
-=======
-<<<<<<< HEAD
-target1.x=100
-target1.y=180
-=======
-target1.x=230
-target1.y=80
->>>>>>> origin/development
->>>>>>> Stashed changes
 target10.editor.height=812
 target10.editor.width=1348
 target10.editor.x=28
@@ -132,22 +112,11 @@ target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
 target10.width=140
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-target10.x=390
-target10.y=580
-target11.editor.height=854
-target11.editor.width=1440
-target11.editor.x=0
-=======
->>>>>>> Stashed changes
 target10.x=210
 target10.y=550
 target11.editor.height=800
 target11.editor.width=1320
 target11.editor.x=51
->>>>>>> origin/development
 target11.editor.y=23
 target11.height=50
 target11.name=MainController
