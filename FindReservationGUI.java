@@ -135,17 +135,17 @@ public class FindReservationGUI
             valueGrid.add(amountOfSeatLabel);
             valueGrid.add(orderNrLabel);
 
-            JButton change = new JButton("Change order");
-            JButton cancel = new JButton("Cancel order");
+            JButton changeButton = new JButton("Change order");
+            JButton cancelButton = new JButton("Cancel order");
 
-            infoGrid.add(cancel);
-            valueGrid.add(change);
+            infoGrid.add(cancelButton);
+            valueGrid.add(changeButton);
 
-            change.addActionListener(e -> {
+            changeButton.addActionListener(e -> {
                     MainController.displayReservationGUI(im);
                     
             });
-            cancel.addActionListener(e -> {
+            cancelButton.addActionListener(e -> {
                 MainController.deleteReservation(im.getReservationId());
                 mainContainer.remove(AllInformationContainer);
                 drawReservationGrid(number, name);

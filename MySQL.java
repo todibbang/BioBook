@@ -28,7 +28,6 @@ public class MySQL
             //Necessary in BlueJ, not in Eclipse and IntelliJ ...
             DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Failed to register com.mysql.jdbc.Driver");
         }
     }
@@ -73,9 +72,6 @@ public class MySQL
             
             return resultStrings;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            System.out.println("Now is a good time to panic!");
             MainController.displayErrorGUI(e.getMessage());
         }
         return null;
@@ -98,8 +94,6 @@ public class MySQL
                 System.out.println("SUCCESS \n");
                 return rs.getInt(1);}
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
             MainController.displayErrorGUI(e.getMessage());
         }
         // Return -1 if no id just added. Consider replacing with exception.
@@ -123,7 +117,6 @@ public class MySQL
         try {
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
             MainController.displayErrorGUI(e.getMessage());
             return false;
         }
